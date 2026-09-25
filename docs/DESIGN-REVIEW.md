@@ -15,17 +15,17 @@ Belgilar: har bir topilma — **muammo → taklif → taʼsir** (yuqori / oʻrta
 4. **Kontrast:** 33 ta matn juftligidan bittasi 4.5:1 dan past chiqdi: `--money`/`--money-tint` = 4.38 (toʻlov chipi). Tuzatildi: 5.13. Qorongʻi rejimdagi `--accent-press` fon sifatida 2.09 beradi, shuning uchun alohida `--accent-fill-press` qoʻshildi. Input chegarasi (`--field-line`) 1.58, 3:1 talabiga javob bermaydi — `--control-edge` qoʻshildi.
 5. **Qorongʻi rejimda soya koʻrinmaydi** (`--surface`/`--bg` = 1.09), variant plitkalari fonga singib ketadi. Tuzatish: qorongʻi `--sh*` tokenlariga 1px yorugʻ halqa qoʻshildi.
 6. **Ichki ziddiyatlar:** oʻlchash rejimida yashil ✅ ishlatilgan (§2 buni taqiqlaydi); S2 da pastki navigatsiya BottomButton bilan ustma-ust tushadi; 104–116 oraligʻi uchun persentil xato yozilgan (60–75, toʻgʻrisi 61–86); “16 daqiqada” deb yozilgan, test esa 15 daqiqalik; JS budjeti `DESIGN.md`da 180 KB, `CONTRACTS.md`da 60 KB.
-7. **Matnlar:** `paywall.terms` “pul avtomatik qaytariladi” deb tushunilishi mumkin; “yaxshi koʻrasiz” ikki maʼnoli (“sevasiz”); tugmalarda fe'l qoidasi buzilgan (“Boshladik!”); bir nechta kalit yetishmaydi (bo'lim oxiri, vaqt tugashi, offline).
+7. **Matnlar:** `paywall.terms` “pul avtomatik qaytariladi” deb tushunilishi mumkin; “yaxshi koʻrasiz” ikki maʼnoli (“sevasiz”); tugmalarda feʼl qoidasi buzilgan (“Boshladik!”); bir nechta kalit yetishmaydi (boʻlim oxiri, vaqt tugashi, offline).
 
 ---
 
 ## 1. Tezlik
 
-### Sovuq ochilishning taxminiy vaqti (o'rta Android, 4G: RTT ≈ 80 ms, 5–10 Mbit/s)
+### Sovuq ochilishning taxminiy vaqti (oʻrta Android, 4G: RTT ≈ 80 ms, 5–10 Mbit/s)
 
 | Bosqich | 1.0 | 1.1 |
 |---|---|---|
-| Telegram WebView'ni ishga tushirish (bizga bogʻliq emas) | 300–700 ms | 300–700 ms |
+| Telegram WebViewʼni ishga tushirish (bizga bogʻliq emas) | 300–700 ms | 300–700 ms |
 | Bizning hostga DNS + TCP + TLS 1.3 (≈ 3 RTT) | 240 ms | 240 ms |
 | HTML (≈ 2 KB, 1 RTT) | 80 ms | 80 ms; **inline shell shu yerda chiziladi** |
 | `telegram-web-app.js` — boshqa origin, parserni bloklaydi | +250–400 ms (parser kutadi) | parallel, bloklamaydi (`defer`) |
@@ -52,21 +52,21 @@ Taʼsir: **yuqori**. ✅ QOʻLLANDI (§9).
 
 **T2. `telegram-web-app.js` sinxron yuklanadi.**
 Muammo: `apps/tma/index.html`dagi `<script src="https://telegram.org/js/telegram-web-app.js">` `<head>` ichida turibdi. Skript boshqa origindan keladi (yana 3 RTT handshake), kesh siyosatini biz boshqara olmaymiz, parser esa uni kutib turadi. Natijada `type="module"` ilova ham, har qanday inline shell ham skript kelguncha chizilmaydi. (Hajmini oʻlchab boʻlmadi — sandbox proksisi telegram.org ga 403 qaytardi. Asosiy xarajat baribir hajm emas, handshake va bloklash.)
-Taklif: `<script src="…telegram-web-app.js" defer>`. `defer` va `type="module"` skriptlar hujjatdagi tartibda bajariladi, shuning uchun `window.Telegram` ilova kodidan oldin tayyor boʻladi. Bunga qoʻshimcha: `<link rel="preconnect" href="https://telegram.org">`, `<body>` ichida `--bg` fonli inline shell (≤ 2 KB, logo SVG) va `<meta name="theme-color">`. Skriptni oʻz CDN'imizdan tarqatish (vendoring) tavsiya etilmaydi — Telegram versiyasidan orqada qolish xavfi bor.
+Taklif: `<script src="…telegram-web-app.js" defer>`. `defer` va `type="module"` skriptlar hujjatdagi tartibda bajariladi, shuning uchun `window.Telegram` ilova kodidan oldin tayyor boʻladi. Bunga qoʻshimcha: `<link rel="preconnect" href="https://telegram.org">`, `<body>` ichida `--bg` fonli inline shell (≤ 2 KB, logo SVG) va `<meta name="theme-color">`. Skriptni oʻz CDNʼimizdan tarqatish (vendoring) tavsiya etilmaydi — Telegram versiyasidan orqada qolish xavfi bor.
 Taʼsir: **yuqori**. ⏳ LEAD — `apps/` papkasiga tegmadim. Qoida `DESIGN.md` §14 ga yozildi.
 
 **T3. Shrift: Inter self-host yoki tizim shrifti?**
-Muammo: 1.0 da Inter variable, 4 ta subset. Google Fonts Inter v20 (`wght` 400–800) boʻyicha oʻlchangan hajmlar: latin 48 KB, latin-ext 85 KB, cyrillic 19 KB, cyrillic-ext 26 KB. Hammasi birga 178 KB. uz-Latn uchun latin subsetning oʻzi yetadi (U+02BB–02BC shu subsetga kiradi), ya'ni latin-ext yuklanmasligi ham mumkin. Lekin 48 KB + swap baribir kritik yoʻlda turadi. Swap paytida matn siljiydi (CLS), “FOUT” koʻrinadi. Buning evaziga olinadigan narsa esa kam: Android'dagi Roboto va iOS'dagi SF Inter'ga juda yaqin, Telegram'ning oʻz interfeysi ham shu shriftlarda chiziladi.
-Taklif: TMA'da `--font` = tizim shrifti (0 KB). Inter faqat `--font-brand` orqali ishlatiladi: logo (SVG), iquest.uz, share kartalar va PDF (server tomonda). Veb sayt uchun: faqat `wght` oʻqi, `unicode-range`, latin subset `preload`. Ogʻirliklar yaxlitlanadi (650 → 600/700), lekin ierarxiya oʻlcham orqali saqlanib qoladi.
+Muammo: 1.0 da Inter variable, 4 ta subset. Google Fonts Inter v20 (`wght` 400–800) boʻyicha oʻlchangan hajmlar: latin 48 KB, latin-ext 85 KB, cyrillic 19 KB, cyrillic-ext 26 KB. Hammasi birga 178 KB. uz-Latn uchun latin subsetning oʻzi yetadi (U+02BB–02BC shu subsetga kiradi), yaʼni latin-ext yuklanmasligi ham mumkin. Lekin 48 KB + swap baribir kritik yoʻlda turadi. Swap paytida matn siljiydi (CLS), “FOUT” koʻrinadi. Buning evaziga olinadigan narsa esa kam: Androidʼdagi Roboto va iOSʼdagi SF Interʼga juda yaqin, Telegramʼning oʻz interfeysi ham shu shriftlarda chiziladi.
+Taklif: TMAʼda `--font` = tizim shrifti (0 KB). Inter faqat `--font-brand` orqali ishlatiladi: logo (SVG), iquest.uz, share kartalar va PDF (server tomonda). Veb sayt uchun: faqat `wght` oʻqi, `unicode-range`, latin subset `preload`. Ogʻirliklar yaxlitlanadi (650 → 600/700), lekin ierarxiya oʻlcham orqali saqlanib qoladi.
 Taʼsir: **yuqori** (−48…−178 KB, CLS = 0). ✅ QOʻLLANDI (`tokens.css` `--font`, `--font-brand`; §4).
 
 **T4. JS budjeti bir-biriga zid va juda keng.**
-Muammo: `DESIGN.md` §14 da “≤ 180 KB gzip”, `CONTRACTS.md` da “≤ 180 (maqsad ≤ 60)”. 180 KB gzip ≈ 600 KB xom JS degani, oʻrta Android'da uni parse va bajarish ≈ 0.5 s oladi. Preact + signals ≈ 6 KB, engine + UI + i18n uchun 60 KB bemalol yetadi.
-Taklif: kritik yoʻl (S3 va S5 gacha) uchun HTML + CSS + JS ≤ 60 KB gzip, CSS ≤ 10 KB, rasm va shrift 0 KB. CI'da `vite build` hajmini tekshirish (masalan `size-limit`).
+Muammo: `DESIGN.md` §14 da “≤ 180 KB gzip”, `CONTRACTS.md` da “≤ 180 (maqsad ≤ 60)”. 180 KB gzip ≈ 600 KB xom JS degani, oʻrta Androidʼda uni parse va bajarish ≈ 0.5 s oladi. Preact + signals ≈ 6 KB, engine + UI + i18n uchun 60 KB bemalol yetadi.
+Taklif: kritik yoʻl (S3 va S5 gacha) uchun HTML + CSS + JS ≤ 60 KB gzip, CSS ≤ 10 KB, rasm va shrift 0 KB. CIʼda `vite build` hajmini tekshirish (masalan `size-limit`).
 Taʼsir: **yuqori**. ✅ QOʻLLANDI (§14). ⏳ LEAD: `CONTRACTS.md`dagi “≤ 180” ni “≤ 60” ga tenglashtirish.
 
 **T5. Savoldan savolga oʻtish.**
-Muammo: §5 ekranlar orasidagi oʻtish uchun 12 px siljish va 220 ms belgilaydi. Agar S5 → S5 ham “ekran almashinuvi” deb hisoblansa, har savolda +220 ms qoʻshiladi. 27 savolda bu 6 s dan ortiq, test “sekin” tuyuladi. Bundan tashqari, CloudStorage'ga saqlashni (Telegram bridge, 50–300 ms) kutib turish ham xavfli.
+Muammo: §5 ekranlar orasidagi oʻtish uchun 12 px siljish va 220 ms belgilaydi. Agar S5 → S5 ham “ekran almashinuvi” deb hisoblansa, har savolda +220 ms qoʻshiladi. 27 savolda bu 6 s dan ortiq, test “sekin” tuyuladi. Bundan tashqari, CloudStorageʼga saqlashni (Telegram bridge, 50–300 ms) kutib turish ham xavfli.
 Taklif: savollar orasida siljish boʻlmaydi, faqat item maydonida ≤ 120 ms opacity. Javob berilgach, keyingi savol 100 ms ichida chizilishi kerak. Saqlash optimistik: kutilmaydi, xato boʻlsa `Banner` chiqadi.
 Taʼsir: **yuqori**. ✅ QOʻLLANDI (§5).
 
@@ -76,7 +76,7 @@ Taklif: 3-boʻlim boshlanganda `import()` natija chunkini idle paytda oldindan y
 Taʼsir: **yuqori**. ✅ QOʻLLANDI (§14, S8).
 
 **T7. Yuklanish va skeleton strategiyasi.**
-Muammo: §7 da `Skeleton` bor, lekin qachon ishlatilishi aytilmagan. Test va natija lokal ishlaydi, u yerda skeleton faqat miltillash hosil qiladi. BotFather loading screen'ning fon rangi ham belgilanmagan (oq “chaqnash” boʻladi).
+Muammo: §7 da `Skeleton` bor, lekin qachon ishlatilishi aytilmagan. Test va natija lokal ishlaydi, u yerda skeleton faqat miltillash hosil qiladi. BotFather loading screenʼning fon rangi ham belgilanmagan (oq “chaqnash” boʻladi).
 Taklif: skeleton faqat tarmoq kerak boʻlgan joyda (toʻlov, share rasm, tarix): 150 ms kechikish bilan chiqadi, shimmer yoʻq. Loading screen foni = `--bg` (#F5F4FB va #121120). Spinner umuman yoʻq.
 Taʼsir: **oʻrta**. ✅ QOʻLLANDI (§3, §7, S0).
 
@@ -91,12 +91,12 @@ Taklif: joriy til `eager` qoladi, ikkinchisi `import()` orqali lazy yuklanadi.
 Taʼsir: **past** (≈ 5–8 KB). ⏳ LEAD (`CONTRACTS.md`, `packages/i18n`).
 
 **T10. Test rejimida fullscreen.**
-Muammo: `requestFullscreen` S5 ga kirilganda viewport'ni oʻzgartiradi (reflow va Telegram animatsiyasi ≈ 300 ms). Fullscreen'da Telegram yuqoriga oʻz boshqaruv tugmalarini chizadi (≈ 46 px + status bar), shuning uchun aslida yutiladigan joy ≈ 10–20 px.
-Taklif: MVP'da `expand()` + `disableVerticalSwipes()` + `enableClosingConfirmation()` yetarli. Fullscreen'ni real qurilmada A/B bilan tekshirish kerak. Fullscreen qolsa, CalmTimer `--safe-top` ostida turishi shart (qoʻllandi).
+Muammo: `requestFullscreen` S5 ga kirilganda viewportʼni oʻzgartiradi (reflow va Telegram animatsiyasi ≈ 300 ms). Fullscreenʼda Telegram yuqoriga oʻz boshqaruv tugmalarini chizadi (≈ 46 px + status bar), shuning uchun aslida yutiladigan joy ≈ 10–20 px.
+Taklif: MVPʼda `expand()` + `disableVerticalSwipes()` + `enableClosingConfirmation()` yetarli. Fullscreenʼni real qurilmada A/B bilan tekshirish kerak. Fullscreen qolsa, CalmTimer `--safe-top` ostida turishi shart (qoʻllandi).
 Taʼsir: **oʻrta**. ⏳ LEAD (§2 jadvali oʻzgartirilmadi).
 
-**T11. Metrikalar TMA'ga mos emas.**
-Muammo: TMA'da “LCP < 2.5 s” deyarli hech narsani oʻlchamaydi. “Har item SVG ≤ 30 KB” qoidasi esa endi eskirgan: item grafikasi maʼlumotdan chiziladi, alohida SVG fayl yoʻq.
+**T11. Metrikalar TMAʼga mos emas.**
+Muammo: TMAʼda “LCP < 2.5 s” deyarli hech narsani oʻlchamaydi. “Har item SVG ≤ 30 KB” qoidasi esa endi eskirgan: item grafikasi maʼlumotdan chiziladi, alohida SVG fayl yoʻq.
 Taklif: quyidagi metrikalar: birinchi kadr ≤ 300 ms, S3 interaktiv ≤ 1.2 s, kesh bilan ≤ 0.6 s, javob → keyingi savol ≤ 100 ms, birinchi savolgacha ≤ 25 s (median). Keshlash: HTML uchun `no-cache`, hash nomli fayllar uchun `immutable`, Brotli.
 Taʼsir: **oʻrta**. ✅ QOʻLLANDI (§14).
 
@@ -130,13 +130,13 @@ Taklif: rozilik S3 ichida inline blok boʻladi (qisqa matn, “Toʻliq matn” h
 Taʼsir: **oʻrta**. ✅ QOʻLLANDI. ⏳ Yurist: “bosish orqali rozilik” (clickwrap) yetarlimi yoki checkbox shartmi — tekshirish kerak.
 
 **O6. S12 “teng vaznli” talabi va BottomButton.**
-Muammo: “Hisobotni olish” native aksent BottomButton'da, “Hozir emas” esa sahifa ichida. Bu tugmalar teng vaznli emas, §15 dagi halollik tamoyiliga zid.
+Muammo: “Hisobotni olish” native aksent BottomButtonʼda, “Hozir emas” esa sahifa ichida. Bu tugmalar teng vaznli emas, §15 dagi halollik tamoyiliga zid.
 Taklif: “Hozir emas” uchun Telegram SecondaryButton ishlatiladi (`color = --soft`, `text_color = --ink`).
 Taʼsir: **oʻrta**. ✅ QOʻLLANDI (§3, S12).
 
 **O7. Pastki navigatsiya.**
-Muammo: §8 ga koʻra S2 da pastki navigatsiya bor, lekin S2 da BottomButton “Testni boshlash” ham bor. Ikki pastki panel ≈ 120 px joy oladi (360 × 610 ekranda bu 20%). MVP'da yuqori darajali manzil esa atigi ikkita.
-Taklif: MVP'da pastki navigatsiya yoʻq: S2 dagi “Natijalarim” kartasi + sarlavhadagi sozlamalar ikonkasi yetarli. Pastki navigatsiya v1 ga qoladi.
+Muammo: §8 ga koʻra S2 da pastki navigatsiya bor, lekin S2 da BottomButton “Testni boshlash” ham bor. Ikki pastki panel ≈ 120 px joy oladi (360 × 610 ekranda bu 20%). MVPʼda yuqori darajali manzil esa atigi ikkita.
+Taklif: MVPʼda pastki navigatsiya yoʻq: S2 dagi “Natijalarim” kartasi + sarlavhadagi sozlamalar ikonkasi yetarli. Pastki navigatsiya v1 ga qoladi.
 Taʼsir: **oʻrta**. ✅ QOʻLLANDI (§8).
 
 **O8. Boʻlim va test oxiridagi tugma.**
@@ -147,7 +147,7 @@ Taʼsir: **oʻrta**. ✅ QOʻLLANDI (S5, §13).
 **O9. Chiqish va tanaffusda taymer qoidasi aniqlanmagan.**
 Muammo: “Testni toʻxtatasizmi? Javoblaringiz saqlanadi.” Lekin boʻlim vaqti bu paytda yuradimi? Taymer toʻxtasa, savolni koʻrib chiqib ketish va keyin qaytib javob berish mumkin boʻladi. Taymer yursa, S7 dagi “davom etasiz” vaʼdasi ochiq-oydin boʻlmaydi.
 Taklif: taymer toʻxtaydi, lekin joriy savol “Bilmayman” deb yopiladi va keyingisidan davom etiladi. Qoida S7 matnida aytiladi.
-Taʼsir: **oʻrta**. ⏳ LEAD (psixometrik qaror, engine'ga taʼsir qiladi).
+Taʼsir: **oʻrta**. ⏳ LEAD (psixometrik qaror, engineʼga taʼsir qiladi).
 
 **O10. “Tasdiqlanmagan” holati S10 da yoʻq.**
 Muammo: S3 da “boshqa ilovaga oʻtsangiz, natijangiz «tasdiqlanmagan» deb belgilanadi” deyilgan. S10 variantlarida esa faqat `reliability=low` (“juda tez javoblar”) bor.
@@ -233,17 +233,17 @@ Taklif: `--accent-fill-press`: yorugʻda #3F31B0 (9.22), qorongʻida #5647D8 (6.
 Taʼsir: **oʻrta**. ✅ QOʻLLANDI.
 
 **V3. Checkbox va input chegarasi 1.58:1.**
-Muammo: `--field-line` “input chegarasi” deb belgilangan, lekin WCAG 1.4.11 talab qiladigan 3:1 ga yetmaydi. ConsentSheet checkbox'i va S9/S10 dagi select'lar deyarli koʻrinmaydi.
+Muammo: `--field-line` “input chegarasi” deb belgilangan, lekin WCAG 1.4.11 talab qiladigan 3:1 ga yetmaydi. ConsentSheet checkboxʼi va S9/S10 dagi selectʼlar deyarli koʻrinmaydi.
 Taklif: yangi `--control-edge` token: #7F7B96 / #7A7696. `--field-line` nomi va qiymati saqlanadi, endi faqat dekorativ elementlar uchun (“?” katak).
 Taʼsir: **yuqori**. ✅ QOʻLLANDI.
 
 **V4. Qorongʻi mavzuda soya ishlamaydi.**
 Muammo: qorongʻida `--surface`/`--bg` = 1.09, `rgba(0,0,0,.45)` soya esa #121120 fonda deyarli koʻrinmaydi. Natijada 8 ta variant plitkasi va kartalar fonga singib ketadi, ayniqsa AMOLED ekranda.
-Taklif: qorongʻi `--sh`, `--sh-2`, `--sh-3` tokenlariga `0 0 0 1px rgba(255,255,255,.06–.08)` halqa qoʻshildi (Material'dagi “elevation overlay” gʻoyasiga oʻxshash). Token nomlari oʻzgarmadi, komponentlarni tuzatish shart emas. Yorugʻ mavzuda plitkalar glif va `--sh` bilan yetarlicha ajraladi. Agar foydalanuvchi testida plitkalarni “oʻtkazib yuborish” holatlari koʻrinsa, plitkaga `inset 0 0 0 1px var(--line)` qoʻshiladi.
+Taklif: qorongʻi `--sh`, `--sh-2`, `--sh-3` tokenlariga `0 0 0 1px rgba(255,255,255,.06–.08)` halqa qoʻshildi (Materialʼdagi “elevation overlay” gʻoyasiga oʻxshash). Token nomlari oʻzgarmadi, komponentlarni tuzatish shart emas. Yorugʻ mavzuda plitkalar glif va `--sh` bilan yetarlicha ajraladi. Agar foydalanuvchi testida plitkalarni “oʻtkazib yuborish” holatlari koʻrinsa, plitkaga `inset 0 0 0 1px var(--line)` qoʻshiladi.
 Taʼsir: **yuqori**. ✅ QOʻLLANDI (`tokens.css`, §3).
 
 **V5. S5 ekranga sigʻmaydi.**
-Muammo: prototip boʻyicha balandlik: 16 + 44 + 16 + 20 + 16 + matritsa 300 (3 × 88 + 2 × 6 + 24) + 16 + variantlar 160–175 + 16 + 44 + 24 ≈ **670–690 px**. Oʻrta Android'da (360 × 800 CSS px, masalan Redmi Note / Galaxy A) foydali joy: 800 − status bar 24 − nav bar 48 − Telegram sarlavhasi 56 − BottomButton 58 ≈ **610 px**. Eni boʻyicha esa hammasi sigʻadi (292 ≤ 328).
+Muammo: prototip boʻyicha balandlik: 16 + 44 + 16 + 20 + 16 + matritsa 300 (3 × 88 + 2 × 6 + 24) + 16 + variantlar 160–175 + 16 + 44 + 24 ≈ **670–690 px**. Oʻrta Androidʼda (360 × 800 CSS px, masalan Redmi Note / Galaxy A) foydali joy: 800 − status bar 24 − nav bar 48 − Telegram sarlavhasi 56 − BottomButton 58 ≈ **610 px**. Eni boʻyicha esa hammasi sigʻadi (292 ≤ 328).
 Taklif: `--matrix-cell` = 88 px, ≤ 720 px balandlikda 76 px, ≤ 620 px da 64 px. Karta ichki cheti 12 → 8 px, bloklar orasi 16 → 12 px, “4/9” sarlavha qatoriga koʻchadi. Natija: 360 px eni va 76 px katakda ≈ **554 px**, scroll yoʻq. 360 × 640 kabi juda kichik ekranlarda 64 px katak bilan ham ≈ 520 px chiqadi — u yerda qisqa scroll qolishiga rozi boʻlamiz.
 Taʼsir: **yuqori**. ✅ QOʻLLANDI (`tokens.css` `--matrix-cell`, `--matrix-gap`, `--tile-gap`; §4, §6, S5 izohi).
 
@@ -252,7 +252,7 @@ Muammo: 40 px/800 raqamlarda “2, 6, 12, 20, 30, ?” ≈ 400–430 px, mavjud 
 Taklif: `title-1` (28 px) + qatorni boʻlishga ruxsat.
 Taʼsir: **oʻrta**. ✅ QOʻLLANDI (§6).
 
-**V7. Variant plitkalari o'lchami.**
+**V7. Variant plitkalari oʻlchami.**
 Holat: 4 × 2 joylashuvda 360 px da plitka (328 − 3 × 8) / 4 = **76 px**, 390 px da 83.5 px. Ikkalasi ham ≥ 44 px, oraliq 8 px — yaxshi. Glif maydoni ≈ 64 px, shakl ≈ 16 px, 2 px chiziq bilan oʻqiladi. Muammo fazo boʻlimida: 1.0 da u “5 ta roʻyxat” deb yozilgan. Uning balandligi 5 × 72 + 4 × 8 = 392 px, bunga namuna figura qoʻshilsa ekranga sigʻmaydi. `OptionGrid` API esa faqat 2/3/4 ustunni biladi.
 Taklif: fazo boʻlimi 3 ustunda (3 + 2), plitka ≈ 104 px. Joylashuv yozuvi “ustun × qator” tartibida birxillashtirildi.
 Taʼsir: **oʻrta**. ✅ QOʻLLANDI (§7).
@@ -263,7 +263,7 @@ Taklif: har bir bosiladigan element ≥ 44 px, jumladan accordion sarlavhasi va 
 Taʼsir: **oʻrta**. ✅ QOʻLLANDI (§14).
 
 **V9. “Katta matn” (×1.15) bilan joy yetmaydi.**
-Muammo: 360 px da PaywallCard'dagi ikki tugmaning har biriga ≈ 140 px tegadi. “Hisobotni olish” ≈ 136 px, ×1.15 da ≈ 156 px — sigʻmaydi. S10 sarlavhasi: “Natijangiz” (28 px/800 ≈ 160 px) + “◷ Dastlabki meʼyorlar” chipi (≈ 165 px) + 8 px = 333 px > 328 px, ya'ni oddiy oʻlchamda ham chegarada.
+Muammo: 360 px da PaywallCardʼdagi ikki tugmaning har biriga ≈ 140 px tegadi. “Hisobotni olish” ≈ 136 px, ×1.15 da ≈ 156 px — sigʻmaydi. S10 sarlavhasi: “Natijangiz” (28 px/800 ≈ 160 px) + “◷ Dastlabki meʼyorlar” chipi (≈ 165 px) + 8 px = 333 px > 328 px, yaʼni oddiy oʻlchamda ham chegarada.
 Taklif: qatorlar `flex-wrap` boʻladi. Paywall tugmalari 360 px da yoki “Katta matn” rejimida ustma-ust turadi.
 Taʼsir: **oʻrta**. ✅ QOʻLLANDI (§4, §7).
 
@@ -272,13 +272,13 @@ Muammo: S6 va `section.done` da ✅ ishlatilgan. U deyarli barcha platformalarda
 Taklif: Lucide `check` ikonkasi, `--accent` rangida. Matnda belgi ishlatilmaydi.
 Taʼsir: **oʻrta**. ✅ QOʻLLANDI.
 
-**V11. Emoji eski Android'da.**
-Muammo: 🧊 (Unicode 12) Android ≤ 9 da boʻsh kvadrat (“tofu”) boʻlib chiqadi. StyleBadge'da 44 px oʻlchamda bu juda koʻzga tashlanadi.
+**V11. Emoji eski Androidʼda.**
+Muammo: 🧊 (Unicode 12) Android ≤ 9 da boʻsh kvadrat (“tofu”) boʻlib chiqadi. StyleBadgeʼda 44 px oʻlchamda bu juda koʻzga tashlanadi.
 Taklif: 4 ta uslub emojisi inline SVG sifatida (≈ 1–2 KB).
 Taʼsir: **past–oʻrta**. ✅ QOʻLLANDI (§7).
 
-**V12. Fullscreen'da CalmTimer.**
-Muammo: taymer oʻng yuqori burchakda turadi, Telegram'ning “⋯” tugmasi ham aynan shu yerda.
+**V12. Fullscreenʼda CalmTimer.**
+Muammo: taymer oʻng yuqori burchakda turadi, Telegramʼning “⋯” tugmasi ham aynan shu yerda.
 Taklif: taymer `--safe-top` ostida joylashadi (token mavjud).
 Taʼsir: **oʻrta**. ✅ QOʻLLANDI (S5 izohi).
 
@@ -301,7 +301,7 @@ Taʼsir: **oʻrta**. ✅ QOʻLLANDI (OptionTile). Qolgan komponentlar uchun ⏳ 
 | Z1 | §0: “Asos — DESIGN-SYSTEM.md”, lekin bunday fayl repoda yoʻq | Bu fayl qoʻshilguncha `DESIGN.md` va `tokens.css` yagona manba | ✅ |
 | Z2 | §0: `packages/ui/components/*`, `CONTRACTS.md`da esa `packages/ui/src/*` | `src` | ✅ |
 | Z3 | §2: “test ichida yashil yoʻq”, lekin S6 va `section.done` da ✅ | ✅ olib tashlandi | ✅ |
-| Z4 | §8: S2 da pastki navigatsiya, S2 da esa BottomButton ham bor | MVP'da pastki navigatsiya yoʻq | ✅ |
+| Z4 | §8: S2 da pastki navigatsiya, S2 da esa BottomButton ham bor | MVPʼda pastki navigatsiya yoʻq | ✅ |
 | Z5 | §8: navigatsiyada “Natijalarim” va “Profil” alohida, S15 da esa ular bitta ekran | v1 ga qoldirildi; S15 bitta ekran | ✅ |
 | Z6 | S12 “teng vaznli”, lekin tugmalardan biri native aksent BottomButton | SecondaryButton | ✅ |
 | Z7 | ScoreBandCard misoli: 104–116 → “60–75 tasidan yuqori”. μ=100, σ=15 da 104 = 60.5-, 116 = 85.7-persentil | “61–86” | ✅ |
@@ -312,9 +312,9 @@ Taʼsir: **oʻrta**. ✅ QOʻLLANDI (OptionTile). Qolgan komponentlar uchun ⏳ 
 | Z12 | §7 “2×4 (matritsa), 3×2 (qator)” — qaysi son ustun, qaysi qator? | “ustun × qator”: 4×2, 3×2 | ✅ |
 | Z13 | S3 “«tasdiqlanmagan» deb belgilanadi”, S10 da bunday holat yoʻq | «ishonchsiz» + `result.unreliable.blur` | ✅ |
 | Z14 | `result.strongest` = “Eng kuchli tomoningiz: {style}”, lekin {style} — uslub nomi (“Naqsh ovchisi”), tomon emas | `{domain}` | ✅ |
-| Z15 | `result.growth` kunlik jumboqlarni tilga oladi, ular esa v1 da | MVP'da koʻrsatilmaydi | ✅ |
+| Z15 | `result.growth` kunlik jumboqlarni tilga oladi, ular esa v1 da | MVPʼda koʻrsatilmaydi | ✅ |
 | Z16 | `waiting_room`, lekin test lokal ishlaydi | faqat server kerak boʻlgan joyda | ✅ |
-| Z17 | §1 “tugma = amal fe'li”, lekin “Boshladik!” | “Boshlash” | ✅ |
+| Z17 | §1 “tugma = amal feʼli”, lekin “Boshladik!” | “Boshlash” | ✅ |
 | Z18 | S2 “27 savol”, S3 va `test.intro.meta` da “27 ta savol” | “27 ta savol” | ✅ |
 | Z19 | §3 “kontrast ≥ 4.5 (§3 da tekshirilgan)”, lekin `--money`/`--money-tint` tekshirilmagan va 4.38 chiqdi | jadval toʻldirildi, token tuzatildi | ✅ |
 | Z20 | `--field-line` “input chegarasi” deb yozilgan, lekin 3:1 dan past | `--control-edge` | ✅ |
@@ -335,7 +335,7 @@ Taʼsir: **oʻrta**. ✅ QOʻLLANDI (OptionTile). Qolgan komponentlar uchun ⏳ 
 | `SeriesRow` | uzun qator | raqamlar oddiy matn — SR oʻqiydi; “?” → “nomaʼlum” | 28 px, qator boʻlinadi | ✅ |
 | `SectionProgress` | — | `role="progressbar"`, `aria-valuenow`/`max`; segmentlar `aria-hidden` | 9 × ≈ 28 px, 6 px | ✅ |
 | `CalmTimer` | “tugadi” holati; yashirin + warn birga | har soniya eʼlon qilinmaydi; faqat warn da `polite` | 44 px bosish zonasi | ✅ |
-| `ScoreBandCard` | past oraliq varianti (§9 da bor, §7 da yoʻq); egri chiziq animatsiyasi reduced-motion'da | egri chiziq `aria-hidden`, oraliq matn sifatida | `display` 40 px — “104–116” ≈ 170 px, sigʻadi | ✅ persentil |
+| `ScoreBandCard` | past oraliq varianti (§9 da bor, §7 da yoʻq); egri chiziq animatsiyasi reduced-motionʼda | egri chiziq `aria-hidden`, oraliq matn sifatida | `display` 40 px — “104–116” ≈ 170 px, sigʻadi | ✅ persentil |
 | `StyleBadge` | emoji fallback | emoji `aria-hidden` | ru nomlar (“Пространственный архитектор”, 27 belgi) 2 qatorga oʻtadi — ruxsat | ✅ SVG emoji |
 | `StrengthBars` | — | “Naqsh: kuchli” deb oʻqiladi | “oʻsish zonasi” bilan chiziq ≈ 150 px (1.0 da ≈ 115 px) | ✅ |
 | `PaywallCard` | *toʻlov kutilmoqda*, *sotib olingan* holatlari yoʻq edi | ikkala tugma bir xil rol va oʻlchamda | ≈ 140 px dan ikki tugma — tor, ustma-ust | ✅ |
@@ -357,15 +357,15 @@ Taʼsir: **oʻrta**. ✅ QOʻLLANDI (OptionTile). Qolgan komponentlar uchun ⏳ 
 - **Apostroflar.** §13 dagi barcha UI satrlarida `ʻ` (U+02BB, oʻ/gʻ) va `ʼ` (U+02BC, tutuq belgisi: maʼlumot, meʼyor, taʼsir) toʻgʻri ishlatilgan. Xato faqat §7 dagi uslub tavsiflarida topildi: “ilg'aysiz”, “bog'liqlik”, “ko'rasiz”, “yo'nalish” oddiy ASCII `'` bilan yozilgan. Bu satrlar UI ga chiqadi, shuning uchun tuzatildi. Hujjat nasrida ASCII `'` ishlatish — muallifning ongli uslubi (UI satrlari emas), oʻzgartirilmadi.
 - **Qoʻshtirnoq.** Aralash ishlatilgan: `“tasdiqlanmagan”` va `«{style}»`. Qaror: UI da `« »`.
 - **“Siz”.** Hamma joyda “siz” bilan murojaat qilingan. Istisno — share matnlari (“Sen ham sinab koʻr”). Bu ataylab qilingan: bu gaplar foydalanuvchining doʻstiga oʻz ovozidan aytadigan gapi. Qoldirildi.
-- **Tugma = fe'l.** Buzilgan joylar: “Boshladik!” (tuzatildi → “Boshlash”), “Tushunarli” (sifat; mashqda qabul qilinadi — qisqa va iliq), “Keyingi” (odatiy, qoldirildi), “Bilmayman” (foydalanuvchining javobi, tugma-amal emas — qoldirildi).
-- **Uzunlik.** Hisob 14.5 px/650 da ≈ 8 px/belgi + 2 × 8 px ichki chet boʻyicha. BottomButton'da (≈ 328 px) barcha satrlar sigʻadi. Tor joylar: PaywallCard'dagi yarim tugma (≈ 140 px): “Hisobotni olish” ≈ 136 px ✓, ×1.15 da ✗; ru “Получить отчёт” ≈ 128 px ✓, ×1.15 da ✗. Qaror: tugmalar ustma-ust.
+- **Tugma = feʼl.** Buzilgan joylar: “Boshladik!” (tuzatildi → “Boshlash”), “Tushunarli” (sifat; mashqda qabul qilinadi — qisqa va iliq), “Keyingi” (odatiy, qoldirildi), “Bilmayman” (foydalanuvchining javobi, tugma-amal emas — qoldirildi).
+- **Uzunlik.** Hisob 14.5 px/650 da ≈ 8 px/belgi + 2 × 8 px ichki chet boʻyicha. BottomButtonʼda (≈ 328 px) barcha satrlar sigʻadi. Tor joylar: PaywallCardʼdagi yarim tugma (≈ 140 px): “Hisobotni olish” ≈ 136 px ✓, ×1.15 da ✗; ru “Получить отчёт” ≈ 128 px ✓, ×1.15 da ✗. Qaror: tugmalar ustma-ust.
 
 ### §13 satrlari, birma-bir
 
 | Kalit | Baho | Izoh / tuzatish |
 |---|---|---|
 | `promise` | ✓ | Qisqa, halol. |
-| `home.cta` | ✓ | Fe'l. |
+| `home.cta` | ✓ | Feʼl. |
 | `test.intro.meta` | ✓ | S2 dagi “27 savol” shunga moslashtirildi (“27 ta savol”). |
 | `test.intro.free` | ✓ | |
 | `test.intro.quiet` | ✓ | 🤫 “sir tut” deb oʻqilishi mumkin — past xavf, qoldirildi. |
@@ -415,10 +415,10 @@ Taʼsir: **oʻrta**. ✅ QOʻLLANDI (OptionTile). Qolgan komponentlar uchun ⏳ 
 
 | Satr | Baho | Tuzatish |
 |---|---|---|
-| Uslub: “Sonlar orasidagi bogʻliqlikni yaxshi koʻrasiz” | **tuzatildi** | “yaxshi koʻrmoq” = “sevmoq”, ya'ni gap “bogʻliqlikni sevasiz” deb oʻqiladi. → “…tez payqaysiz”. |
+| Uslub: “Sonlar orasidagi bogʻliqlikni yaxshi koʻrasiz” | **tuzatildi** | “yaxshi koʻrmoq” = “sevmoq”, yaʼni gap “bogʻliqlikni sevasiz” deb oʻqiladi. → “…tez payqaysiz”. |
 | Uslub: “Barcha yoʻnalishlarda bir tekis” | **tuzatildi** | Kesimi yoʻq, gap tugallanmagan. → “…bir tekis kuchlisiz”. |
 | Uslub: “Qonuniyat va naqshlarni tez ilgʻaysiz” | apostrof tuzatildi | |
-| StrengthBars: “rivojlanish zonasi” | **tuzatildi** | 360 px da kesilardi (wireframe'da “rivojlanish z.”) → “oʻsish zonasi” (ru “зона роста” bilan ham mos). |
+| StrengthBars: “rivojlanish zonasi” | **tuzatildi** | 360 px da kesilardi (wireframeʼda “rivojlanish z.”) → “oʻsish zonasi” (ru “зона роста” bilan ham mos). |
 | S2 chip “Bepul” | izoh | Rang tanlanmagan edi → `accent` (yashil faqat pul uchun; “bepul” narx emas, vaʼda). |
 | S6 “1-boʻlim yakunlandi ✅” | **tuzatildi** | ✅ olib tashlandi. |
 | S8 “16 daqiqada” | **tuzatildi** | “14 daqiqada” (Z8). |
@@ -455,11 +455,11 @@ Hozirgi `packages/i18n/locales/ru/*` qoralamasi (i18n agenti yozmoqda; oʻzim te
 6. **Komponentlar** (§7): OptionTile holatlari (press, fokus); CalmTimer (tugadi, `aria-live`); ScoreBandCard persentili; StyleBadge SVG emoji; StrengthBars “oʻsish zonasi”; PaywallCard holatlari va ustma-ust tugmalar; ShareSheet holatlari; StatusChip neutral; yangi `Banner`.
 7. **Ziddiyatlar**: Z1–Z21 (4-boʻlimdagi jadval).
 8. **Matnlar** (§13): `test.intro.integrity`, `test.intro.cta`, `section.done`, `result.pct`, `result.strongest`, `paywall.terms`, uslub tavsiflari, ru `promise` va `paywall.terms` tuzatildi. Yangi kalitlar: `test.section.finish`, `test.finish`, `test.timer.show`, `test.timeup`, `test.exit.continue`, `test.exit.stop`, `survey.distracted(.no/.some/.yes)`, `survey.age`, `finish.cta`, `lang.switch`, `result.unreliable.blur`, `result.retake`, `result.share`, `practice.explain.{itemId}`, `error.offline`, `common.retry`. Kalit nomlari i18n agenti ishlatayotgan nomlarga moslashtirildi.
-9. **Navigatsiya** (§8): MVP'da pastki navigatsiya yoʻq.
+9. **Navigatsiya** (§8): MVPʼda pastki navigatsiya yoʻq.
 
 ### Qoʻllanmagan — lead qarori kerak (⏳)
 - `apps/tma/index.html`: telegram-web-app.js uchun `defer`, `preconnect`, inline shell, `theme-color`; `user-scalable=no` ni qayta koʻrib chiqish.
-- `docs/CONTRACTS.md`: “≤ 180 KB” → “≤ 60 KB”; i18n'da faqat joriy til `eager`.
+- `docs/CONTRACTS.md`: “≤ 180 KB” → “≤ 60 KB”; i18nʼda faqat joriy til `eager`.
 - `packages/i18n/locales/*`: §13 dagi yangi qiymatlar va kalitlarni sinxronlash (uz va ru); ru lugʻati toʻliq boʻlmaguncha `ru` avtomatik tanlanmasin.
 - UI agenti: `--accent-fill-press`, `--control-edge` va `:focus-visible` dan foydalanish; S5 da `--matrix-cell`/`--tile-gap`; checkbox `--control-edge` bilan.
 - Test rejimida fullscreen (T10), chiqishda taymer qoidasi (O9), ishonchsiz natijadan keyin qayta topshirish (O12), clickwrap rozilik (O5, yurist).

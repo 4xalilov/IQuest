@@ -5,7 +5,7 @@ API'ni o'zgartirish kerak bo'lsa — shu faylni ham yangilang.
 
 Stack: Preact 10 + @preact/signals, Vite, TypeScript (strict), pnpm workspaces. CSS — oddiy CSS fayllar,
 faqat `packages/ui/tokens.css` dagi rol o'zgaruvchilari (`var(--accent)` va h.k.). CSS-in-JS yo'q, UI kutubxona yo'q.
-Tezlik budjeti: boshlang'ich JS ≤ 180 KB gzip (maqsad ≤ 60 KB), animatsiya faqat `transform`/`opacity`.
+Tezlik budjeti: kritik yoʻl (Intro → birinchi savol) JS ≤ 60 KB gzip (DESIGN.md v1.1 §14), animatsiya faqat `transform`/`opacity`.
 
 ## `@iquest/engine` — `packages/engine/src/`
 DOM'siz, sof TS. Test ma'lumotlari, sessiya holati, ball hisoblash.

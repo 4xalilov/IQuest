@@ -51,7 +51,7 @@ export function ItemView({ item, value, onChange, disabled }: Props) {
       <div class="app-stimulus app-stimulus--figure">
         <Figure glyphs={item.target} label={t('item.rotation.aria')} />
       </div>
-      <OptionGrid columns={5} {...common}>
+      <OptionGrid columns={3} {...common}>
         {item.options.map((fig) => (
           <Figure glyphs={fig} />
         ))}

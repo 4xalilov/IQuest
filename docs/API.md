@@ -47,7 +47,7 @@ Bu fayl yagona manba: endpoint o'zgarsa — shu faylni ham yangilang.
 
 ### iq — `routes/iq.ts` (server tomonda ball, `@iquest/engine`)
 - `POST /iq/sessions` `{ ageBand? }` → `{ sessionId, seed, formVersion, form }`. Bepul foydalanuvchi: kuniga `freeExamCount` ta
-  (`iq_tests` usage) — oshsa 403 `limit_reached`. `form` = `buildForm(seed)` **javoblarsiz** (`answer` maydonlari olib tashlanadi).
+  (`iq_tests` usage) — oshsa 403 `limit_reached`. `form` = `buildForm(seed)` — 3×9 ball beriladigan bo'limlarda `answer` olib tashlanadi; `practice` itemlarida qoladi (mashq ekrani izoh ko'rsatadi, ballga kirmaydi). `seed` — 1..2³¹−1.
   Foydalanuvchida `active` sessiya bo'lsa (24 soatdan yangi) — o'sha qaytadi (limit sarflanmaydi).
 - `GET /iq/sessions/:id` → `{ sessionId, status, seed, formVersion, form, result? }` (faqat egasi)
 - `POST /iq/sessions/:id/submit` `{ answers: (number|null)[][], rtMs: number[][], blurCount?: number }` → `{ result }`.

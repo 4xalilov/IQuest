@@ -67,10 +67,12 @@ Bu fayl yagona manba: endpoint o'zgarsa — shu faylni ham yangilang.
 - `GET /stats/me?period=all|week|month|year` → `{ totalQuestions, correct, wrong, correctPct, currentStreak, bestStreak,
   iq: { count, best: {low,high}|null, last: {low,high}|null, avgMid: number|null }, graph: [{ date:'YYYY-MM-DD', pct }] }`
   (graph — oxirgi 7 faol kun; streak — ketma-ket faol kunlar, Toshkent vaqti)
+  Davr: week/month/year = oxirgi 7/30/365 Toshkent kuni (bugun ham); totals, `iq` (finishedAt bo'yicha) va graph'ga qo'llanadi, streak'lar — butun tarix. `pct` = round(100×correct/total), total=0 → 0.
 
 ### leaderboard — `routes/leaderboard.ts`
 - `GET /leaderboard?period=day|week|month|all&limit=50` → `{ items: [{ rank, userId, name, avatar, xp, isMe }], me: { rank, xp } | null }`
   (`all` — `users.xp`; boshqalari — `results.xp` yig'indisi davr ichida; name = firstName + familiya bosh harfi; avatar = ism bosh harflari)
+  day/week/month — Toshkent yarim tunidan 0/6/29 kun oldin boshlanadi; standart `week`. Rank noyob: teng xp'da kichik userId oldinda. 0 xp'lilar chiqarilmaydi.
 
 ### payments — `routes/payments.ts` + `routes/bot.ts`
 - `GET /payments/plans` → `{ plans: [{ id, days, uzs, uzsFinal, stars }], discount, card }` (chegirma `uzsFinal` ga qo'llanadi; faol bo'lsa va `endDate` o'tmagan bo'lsa)

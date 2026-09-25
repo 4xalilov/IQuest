@@ -1,0 +1,15 @@
+{
+  "result.title": "Natijangiz",
+  "result.band.label": "Taxminiy IQ oraligʻi",
+  "result.pct": "100 kishidan taxminan {low}–{high} tasidan yuqori",
+  "result.norms.provisional": "Dastlabki meʼyorlar",
+  "result.strongest": "Eng kuchli tomoningiz: {style}",
+  "result.means": "Bu natija ijodkorligingiz, bilimingiz, xarakteringiz yoki inson sifatidagi qadringizni oʻlchamaydi. Bu tibbiy tashxis emas.",
+  "result.conditions": "Uyqu, charchoq, shovqin va bunday topshiriqlarga odatlanmaganlik natijaga taʼsir qiladi.",
+  "result.growth": "Mashq qilgan topshiriq turlaringizda natija oshadi — kunlik jumboqlar aynan shu uchun.",
+  "result.snapshot": "Bu natija — bugungi holatingiz surati, hukm emas.",
+  "result.unreliable": "Baʼzi javoblar juda tez berildi, shuning uchun bu natija ishonchli emas. Tinch sharoitda qayta urinib koʻrasizmi?",
+  "result.age_pending": "Yoshingiz uchun meʼyorlar tayyorlanmoqda. Tayyor boʻlganda xabar beramiz.",
+  "result.worried": "Natija haqida qaygʻuryapsizmi?",
+  "result.retest": "Rasmiy qayta test — 90 kundan keyin, yangi savollar bilan."
+}

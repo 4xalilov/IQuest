@@ -1,0 +1,20 @@
+{
+  "style.pattern.name": "Naqsh ovchisi",
+  "style.pattern.emoji": "🧩",
+  "style.pattern.desc": "Qonuniyat va naqshlarni tez ilgʻaysiz",
+  "style.numbers.name": "Raqamlar ustasi",
+  "style.numbers.emoji": "🔢",
+  "style.numbers.desc": "Sonlar orasidagi bogʻliqlikni yaxshi koʻrasiz",
+  "style.spatial.name": "Fazoviy meʼmor",
+  "style.spatial.emoji": "🧊",
+  "style.spatial.desc": "Shakllarni xayolda aylantirishda kuchlisiz",
+  "style.balanced.name": "Muvozanatli fikrlovchi",
+  "style.balanced.emoji": "⚖️",
+  "style.balanced.desc": "Barcha yoʻnalishlarda bir tekis",
+  "strength.strong": "kuchli",
+  "strength.medium": "oʻrtacha",
+  "strength.growth": "rivojlanish zonasi",
+  "domain.pattern": "Naqsh",
+  "domain.numbers": "Raqamlar",
+  "domain.spatial": "Fazo"
+}

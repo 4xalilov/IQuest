@@ -1,0 +1,18 @@
+{
+  "test.intro.meta": "⏱ 15 daqiqa · 3 boʻlim · 27 ta savol",
+  "test.intro.free": "🎁 Asosiy natija — bepul, roʻyxatdan oʻtish shart emas.",
+  "test.intro.quiet": "🤫 Tinch joy tanlang va hech kimdan yordam soʻramang.",
+  "test.intro.integrity": "Diqqat: test davomida boshqa ilovaga oʻtsangiz, natijangiz “tasdiqlanmagan” deb belgilanadi.",
+  "test.intro.cta": "Boshladik!",
+  "test.intro.later": "Keyinroq eslatish",
+  "practice.correct": "Toʻgʻri! Har bir qatorda shakllar bittadan koʻpaymoqda.",
+  "practice.wrong": "Unchalik emas — qarang: …",
+  "test.skip": "Bilmayman",
+  "test.next": "Keyingi",
+  "test.timer.hide": "Vaqtni yashirish",
+  "test.timer.warn": "1 daqiqa qoldi",
+  "test.exit.confirm": "Testni toʻxtatasizmi? Javoblaringiz saqlanadi.",
+  "section.done": "{n}-boʻlim yakunlandi ✅ Diqqatingiz uchun rahmat. Tayyor boʻlganingizda davom eting.",
+  "resume.body": "Testingiz saqlangan. {section}-boʻlimning {item}-savolidan davom etasiz.",
+  "finish.body": "Barakalla! {count} ta savolga {minutes} daqiqada javob berdingiz."
+}

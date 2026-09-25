@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>IQuest prototip</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;650;700;800&display=swap">
+<link rel="stylesheet" href="../../packages/ui/tokens.css">
+<style>
+  * { box-sizing: border-box; }
+  body { padding: var(--s-4) 0 var(--s-10); }
+
+  .toolbar { display: flex; gap: var(--s-2); justify-content: center; flex-wrap: wrap; padding: 0 var(--gutter) var(--s-4); }
+  .toolbar button { font: inherit; font-size: var(--body-s-size); min-height: var(--hit); padding: 0 var(--s-4); border: 0; border-radius: var(--r-chip); background: var(--soft); color: var(--ink); cursor: pointer; }
+  .toolbar button[aria-pressed="true"] { background: var(--accent-tint); color: var(--accent); }
+
+  .screens { display: flex; gap: var(--s-8); justify-content: center; flex-wrap: wrap; }
+  .phone { width: 390px; max-width: 100%; background: var(--bg); display: flex; flex-direction: column; border-radius: var(--r-sheet); box-shadow: var(--sh-3); overflow: hidden; }
+  .phone-body { flex: 1; padding: var(--s-4) var(--gutter) var(--s-6); display: flex; flex-direction: column; gap: var(--s-4); }
+  .bottom-bar { padding: var(--s-3) var(--gutter) calc(var(--s-3) + var(--safe-bottom)); background: var(--bg); box-shadow: 0 -1px 0 var(--faint); }
+
+  /* Button */
+  .btn { font: inherit; font-size: var(--button-size); font-weight: var(--button-weight); line-height: var(--button-lh); min-height: var(--btn-h); width: 100%; border: 0; border-radius: var(--r-control); padding: 0 var(--s-5); cursor: pointer; transition: transform var(--dur-fast) var(--ease), opacity var(--dur-fast) var(--ease); }
+  .btn:active { transform: scale(.98); }
+  .btn-primary { background: var(--accent-fill); color: var(--on-fill); }
+  .btn-secondary { background: var(--soft); color: var(--ink); }
+  .btn-ghost { background: none; color: var(--accent); min-height: var(--btn-h-s); }
+  .btn:disabled { opacity: .45; cursor: default; transform: none; }
+
+  /* Header / progress / timer */
+  .test-head { display: flex; justify-content: space-between; align-items: center; }
+  .timer { display: inline-flex; align-items: center; gap: var(--s-2); font-weight: 650; min-height: var(--hit); border: 0; background: none; color: var(--ink-2); font: inherit; cursor: pointer; }
+  .timer svg { width: 18px; height: 18px; }
+  .timer.warn { color: var(--warn); }
+  .progress { display: flex; align-items: center; gap: var(--s-3); }
+  .segments { flex: 1; display: grid; grid-template-columns: repeat(9, 1fr); gap: 4px; }
+  .segments i { height: 6px; border-radius: 3px; background: var(--soft-2); }
+  .segments i.on { background: var(--accent); }
+
+  /* MatrixGrid */
+  .matrix { align-self: center; display: grid; grid-template-columns: repeat(3, 88px); gap: 6px; padding: var(--s-3); background: var(--surface); border-radius: var(--r-card); box-shadow: var(--sh-2); color: var(--ink); }
+  .cell { width: 88px; height: 88px; display: grid; place-items: center; }
+  .cell svg { width: 70px; height: 70px; }
+  .cell.q { background: var(--soft); border: 2px dashed var(--field-line); border-radius: 12px; font-size: var(--title-1-size); font-weight: 800; color: var(--muted); }
+
+  /* OptionTile */
+  .options { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-2); }
+  .tile { position: relative; aspect-ratio: 1; border: 0; border-radius: var(--r-control); background: var(--surface); box-shadow: var(--sh); color: var(--ink); display: grid; place-items: center; cursor: pointer; padding: 6px; }
+  .tile svg { width: 100%; height: 100%; }
+  .tile[aria-checked="true"] { background: var(--selected-bg); box-shadow: inset 0 0 0 2px var(--accent); }
+  .tile[aria-checked="true"]::after { content: "✓"; position: absolute; top: 4px; right: 4px; width: 18px; height: 18px; border-radius: 50%; background: var(--accent); color: var(--surface); font-size: 11px; font-weight: 800; display: grid; place-items: center; }
+
+  /* Cards / chips */
+  .card { background: var(--surface); border-radius: var(--r-card); box-shadow: var(--sh-2); padding: var(--s-5); }
+  .chip { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: var(--r-chip); font-size: var(--eyebrow-size); font-weight: 700; white-space: nowrap; }
+  .chip-notice { background: var(--notice-tint); color: var(--notice); }
+  .chip-money { background: var(--money-tint); color: var(--money); }
+  .page-head { display: flex; flex-direction: column; gap: var(--s-1); }
+  .page-head .row { display: flex; align-items: center; justify-content: space-between; gap: var(--s-2); }
+  .page-head h1, .card h2, h3 { margin: 0; }
+
+  .style-badge { display: flex; gap: var(--s-4); align-items: center; }
+  .style-badge .emoji { font-size: 44px; line-height: 1; }
+  .style-badge p { margin: 2px 0 0; }
+
+  .band { text-align: center; }
+  .band .t-display { margin: var(--s-2) 0; color: var(--ink); }
+  .curve { width: 100%; height: 80px; color: var(--muted); }
+  .curve .hl { transform-box: fill-box; transform-origin: center; animation: reveal var(--dur-reveal) var(--ease) both; }
+  @keyframes reveal { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+  .bars { display: grid; grid-template-columns: auto 1fr auto; gap: var(--s-3) var(--s-3); align-items: center; }
+  .bar { height: 10px; border-radius: 5px; background: var(--soft); overflow: hidden; }
+  .bar i { display: block; height: 100%; border-radius: 5px; background: var(--ink-2); }
+  .bars .word { font-size: var(--body-s-size); color: var(--muted); }
+
+  details { border-top: 1px solid var(--line); padding: var(--s-3) 0; }
+  details:last-of-type { border-bottom: 1px solid var(--line); }
+  summary { cursor: pointer; font-weight: 650; min-height: 24px; }
+  details p { margin: var(--s-2) 0 0; color: var(--ink-2); }
+
+  .paywall ul { list-style: none; padding: 0; margin: var(--s-3) 0; display: grid; gap: var(--s-2); }
+  .paywall li::before { content: "✓ "; color: var(--accent); font-weight: 800; }
+  .paywall .price { color: var(--money); }
+  .paywall .actions { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-2); margin-top: var(--s-4); }
+  .paywall .actions .btn { padding: 0 var(--s-2); white-space: nowrap; }
+
+  @media (max-width: 420px) {
+    .phone { border-radius: 0; box-shadow: none; }
+    .screens { gap: var(--s-4); }
+    .matrix { grid-template-columns: repeat(3, minmax(0, 88px)); }
+    .cell { width: auto; height: auto; aspect-ratio: 1; }
+  }
+</style>
+</head>
+<body>
+<div class="toolbar" role="group" aria-label="Mavzu">
+  <button data-set-theme="" aria-pressed="true">Tizim</button>
+  <button data-set-theme="light" aria-pressed="false">Yorugʻ</button>
+  <button data-set-theme="dark" aria-pressed="false">Qorongʻi</button>
+  <button id="large" aria-pressed="false">Katta matn</button>
+</div>
+
+<!-- Item grafikasi: monoxrom, currentColor, rangga bog'liq qoida yo'q (§6) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" stroke="currentColor" stroke-width="2"/>
+    </pattern>
+  </defs>
+</svg>
+
+<div class="screens">
+
+  <!-- S5 — Savol -->
+  <section class="phone" aria-label="S5 — Savol">
+    <div class="phone-body">
+      <div class="test-head">
+        <span class="t-eyebrow">Naqsh · 1/3-boʻlim</span>
+        <button class="timer t-num" id="timer" aria-label="Vaqtni yashirish">
+          <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8" fill="none" stroke="var(--soft-2)" stroke-width="3"/><circle id="ring" cx="10" cy="10" r="8" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="50.3" stroke-dashoffset="12" transform="rotate(-90 10 10)" stroke-linecap="round"/></svg>
+          <span id="clock">03:42</span>
+        </button>
+      </div>
+      <div class="progress">
+        <div class="segments" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div>
+        <span class="t-body-s t-num">4/9</span>
+      </div>
+
+      <div class="matrix" role="img" aria-label="3×3 naqsh matritsasi, oxirgi katak boʻsh">
+        <div class="cell" id="m"></div>
+      </div>
+
+      <div class="options" role="radiogroup" aria-label="Javob variantlari" id="options"></div>
+      <button class="btn btn-ghost" type="button">Bilmayman</button>
+    </div>
+    <div class="bottom-bar"><button class="btn btn-primary" id="next" disabled>Keyingi</button></div>
+  </section>
+
+  <!-- S10 — Natija -->
+  <section class="phone" aria-label="S10 — Natija">
+    <div class="phone-body">
+      <header class="page-head">
+        <span class="t-eyebrow">IQ testi · 25-sentabr</span>
+        <div class="row">
+          <h1 class="t-title-1">Natijangiz</h1>
+          <span class="chip chip-notice">◷ Dastlabki meʼyorlar</span>
+        </div>
+        <p class="t-body" style="margin:0;color:var(--ink-2)">Barakalla! 27 ta savolga 16 daqiqada javob berdingiz.</p>
+      </header>
+
+      <div class="card style-badge">
+        <span class="emoji" aria-hidden="true">🧩</span>
+        <div><h2 class="t-title-2">Naqsh ovchisi</h2><p class="t-body-s">Qonuniyat va naqshlarni tez ilgʻaysiz</p></div>
+      </div>
+
+      <div class="card band">
+        <div class="t-eyebrow">Taxminiy IQ oraligʻi</div>
+        <div class="t-display">104–116</div>
+        <svg class="curve" viewBox="0 0 300 80" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M0 78 C 70 78, 100 4, 150 4 S 230 78, 300 78" fill="none" stroke="currentColor" stroke-width="2"/>
+          <rect class="hl" x="160" y="0" width="45" height="80" rx="6" fill="var(--accent)" opacity=".18"/>
+          <line class="hl" x1="160" y1="79" x2="205" y2="79" stroke="var(--accent)" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+        <p class="t-body-s" style="margin:var(--s-2) 0 0">100 kishidan taxminan 60–75 tasidan yuqori</p>
+      </div>
+
+      <div>
+        <h3 class="t-title-2" style="margin-bottom:var(--s-3)">Qobiliyatlaringiz</h3>
+        <div class="bars">
+          <span>Naqsh</span><div class="bar"><i style="width:90%"></i></div><span class="word">kuchli</span>
+          <span>Raqamlar</span><div class="bar"><i style="width:62%"></i></div><span class="word">oʻrtacha</span>
+          <span>Fazo</span><div class="bar"><i style="width:42%"></i></div><span class="word">rivojlanish zonasi</span>
+        </div>
+      </div>
+
+      <div>
+        <details><summary>Bu natija nimani anglatadi?</summary>
+          <p>Bu natija ijodkorligingiz, bilimingiz, xarakteringiz yoki inson sifatidagi qadringizni oʻlchamaydi. Bu tibbiy tashxis emas.</p>
+          <p>Uyqu, charchoq, shovqin va bunday topshiriqlarga odatlanmaganlik natijaga taʼsir qiladi.</p>
+        </details>
+        <details><summary>Keyingi qadamlar</summary>
+          <p>Mashq qilgan topshiriq turlaringizda natija oshadi — kunlik jumboqlar aynan shu uchun.</p>
+          <p>Rasmiy qayta test — 90 kundan keyin, yangi savollar bilan.</p>
+        </details>
+      </div>
+
+      <div class="card paywall">
+        <h2 class="t-title-2">Batafsil hisobot · <span class="price t-num">150 ⭐</span></h2>
+        <ul class="t-body">
+          <li>3 boʻlim boʻyicha tahlil</li>
+          <li>Har boʻlim boʻyicha vaqt va aniqlik</li>
+          <li>4 haftalik shaxsiy mashq rejasi</li>
+          <li>PDF</li>
+        </ul>
+        <p class="t-body-s" style="margin:0">Bir martalik toʻlov. Obuna emas. 7 kun ichida pul qaytariladi.</p>
+        <div class="actions">
+          <button class="btn btn-secondary">Hisobotni olish</button>
+          <button class="btn btn-secondary">Hozir emas</button>
+        </div>
+      </div>
+    </div>
+    <div class="bottom-bar"><button class="btn btn-primary">Natijani ulashish</button></div>
+  </section>
+</div>
+
+<script>
+  // Item SVG: qator = shakl, ustun = soni; to'ldirish turi qo'shimcha o'zgaruvchi.
+  const shape = (kind, n, fill) => {
+    const f = fill === 'hatch' ? 'url(#hatch)' : fill === 'solid' ? 'currentColor' : 'none';
+    const xs = n === 1 ? [35] : n === 2 ? [22, 48] : [12, 35, 58];
+    return xs.map(x => kind === 'circle'
+      ? `<circle cx="${x}" cy="35" r="9" fill="${f}" stroke="currentColor" stroke-width="2"/>`
+      : kind === 'square'
+      ? `<rect x="${x - 9}" y="26" width="18" height="18" fill="${f}" stroke="currentColor" stroke-width="2"/>`
+      : `<path d="M${x} 25 L${x + 10} 44 L${x - 10} 44 Z" fill="${f}" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>`
+    ).join('');
+  };
+  const svg = inner => `<svg viewBox="0 0 70 70" aria-hidden="true">${inner}</svg>`;
+
+  const rows = ['circle', 'square', 'triangle'], fills = ['none', 'hatch', 'solid'];
+  document.querySelector('.matrix').innerHTML = rows.flatMap((k, r) =>
+    [1, 2, 3].map(n => r === 2 && n === 3
+      ? '<div class="cell q">?</div>'
+      : `<div class="cell">${svg(shape(k, n, fills[r]))}</div>`)
+  ).join('');
+
+  const opts = [['triangle',2,'solid'],['square',3,'solid'],['triangle',3,'solid'],['triangle',3,'hatch'],
+                ['circle',3,'solid'],['triangle',1,'solid'],['triangle',3,'none'],['square',3,'hatch']];
+  const box = document.getElementById('options'), next = document.getElementById('next');
+  opts.forEach(([k, n, f], i) => {
+    const b = document.createElement('button');
+    b.className = 'tile'; b.type = 'button';
+    b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', 'false');
+    b.setAttribute('aria-label', `Variant ${i + 1}`);
+    b.innerHTML = svg(shape(k, n, f));
+    b.onclick = () => {
+      box.querySelectorAll('.tile').forEach(t => t.setAttribute('aria-checked', String(t === b)));
+      next.disabled = false;
+      window.Telegram?.WebApp?.HapticFeedback?.selectionChanged();
+    };
+    box.appendChild(b);
+  });
+
+  // CalmTimer: sokin, yashirish mumkin, oxirgi daqiqada ogohlantirish
+  let left = 222, hidden = false;
+  const clock = document.getElementById('clock'), timer = document.getElementById('timer'), ring = document.getElementById('ring');
+  const draw = () => {
+    const m = String(Math.floor(left / 60)).padStart(2, '0'), s = String(left % 60).padStart(2, '0');
+    const warn = left <= 60;
+    timer.classList.toggle('warn', warn);
+    clock.textContent = hidden ? (warn ? '1 daqiqa qoldi' : 'Vaqtni koʻrsatish') : (warn ? `${m}:${s} · 1 daqiqa qoldi` : `${m}:${s}`);
+    ring.setAttribute('stroke-dashoffset', String(50.3 * (1 - left / 300)));
+  };
+  timer.onclick = () => { hidden = !hidden; timer.setAttribute('aria-label', hidden ? 'Vaqtni koʻrsatish' : 'Vaqtni yashirish'); draw(); };
+  setInterval(() => { if (left > 0) { left--; draw(); } }, 1000);
+  draw();
+
+  // Mavzu va katta matn
+  const root = document.documentElement;
+  document.querySelectorAll('[data-set-theme]').forEach(b => b.onclick = () => {
+    const v = b.dataset.setTheme;
+    v ? root.setAttribute('data-theme', v) : root.removeAttribute('data-theme');
+    document.querySelectorAll('[data-set-theme]').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+  });
+  const large = document.getElementById('large');
+  large.onclick = () => {
+    const on = root.dataset.text !== 'large';
+    on ? root.setAttribute('data-text', 'large') : root.removeAttribute('data-text');
+    large.setAttribute('aria-pressed', String(on));
+  };
+</script>
+</body>
+</html>

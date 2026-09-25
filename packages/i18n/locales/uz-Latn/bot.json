@@ -1,0 +1,6 @@
+{
+  "bot.nudge.abandoned": "💾 Testingiz saqlandi. Davom ettirish uchun bosing — qolgan qismi taxminan {minutes} daqiqa.",
+  "bot.puzzle.ready": "🧩 Bugungi jumboq tayyor — 2 daqiqalik bosh qotirma. Yechib koʻrasizmi?",
+  "bot.retest": "📅 Birinchi testingizdan 90 kun oʻtdi. Xohlasangiz, yangi savollar bilan rasmiy qayta test topshiring.",
+  "bot.paused": "🤝 Sizni bezovta qilmaslik uchun eslatmalarni toʻxtatdik. Qaytmoqchi boʻlsangiz — jumboqlar shu yerda."
+}

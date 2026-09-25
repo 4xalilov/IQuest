@@ -1,0 +1,229 @@
+/*
+ * IQuest — "Siyoh" mavzusi (DESIGN.md §3–§5).
+ * Hex qiymatlar faqat shu faylda. Komponentlar rangni rol nomi bilan oladi: var(--accent).
+ * Mavzu: <html data-theme="light|dark">. Atribut bo'lmasa — tizim sozlamasi.
+ */
+
+/* ---------- Yorug' (standart) ---------- */
+:root,
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --bg: #F5F4FB;
+  --surface: #FFFFFF;
+  --soft: #EEECF7;
+  --soft-2: #E6E3F2;
+  --line: #DEDBEA;
+  --faint: #ECEAF4;
+  --field-line: #CFCBE0;
+
+  --ink: #1D1B2E;
+  --ink-2: #3A3752;
+  --muted: #5E5B72;
+
+  --accent: #4F3FD0;
+  --accent-press: #3F31B0;
+  --accent-fill: #4F3FD0;
+  --accent-tint: #ECEAFB;
+  --selected-bg: #F1EFFD;
+  --on-fill: #FFFFFF;
+
+  --warn: #8A5A00;
+  --warn-tint: #FBF1DD;
+  --money: #087F5B;
+  --money-tint: #E5F3EC;
+  --notice: #0E6E8C;
+  --notice-tint: #E3F2F7;
+  --danger: #B42F35;
+  --danger-tint: #FBE9EA;
+
+  --sh: 0 1px 2px rgba(29, 27, 46, .06);
+  --sh-2: 0 4px 16px rgba(29, 27, 46, .08);
+  --sh-3: 0 12px 40px rgba(29, 27, 46, .14);
+}
+
+/* ---------- Qorong'i ---------- */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg: #121120;
+  --surface: #1B1A2B;
+  --soft: #242338;
+  --soft-2: #2C2B42;
+  --line: #34324A;
+  --faint: #26253A;
+  --field-line: #45425E;
+
+  --ink: #F1F0FA;
+  --ink-2: #CFCDE3;
+  --muted: #A4A1BA;
+
+  --accent: #9C90FF;
+  --accent-press: #B3A9FF;
+  --accent-fill: #6B5CF0;
+  --accent-tint: #26224A;
+  --selected-bg: #231F45;
+  --on-fill: #FFFFFF;
+
+  --warn: #F2C46B;
+  --warn-tint: #3A2E12;
+  --money: #5FD3A6;
+  --money-tint: #10302A;
+  --notice: #6CC6E0;
+  --notice-tint: #0F2C36;
+  --danger: #FF8A8F;
+  --danger-tint: #3A1719;
+
+  --sh: 0 1px 2px rgba(0, 0, 0, .40);
+  --sh-2: 0 4px 16px rgba(0, 0, 0, .45);
+  --sh-3: 0 12px 40px rgba(0, 0, 0, .55);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    color-scheme: dark;
+
+    --bg: #121120;
+    --surface: #1B1A2B;
+    --soft: #242338;
+    --soft-2: #2C2B42;
+    --line: #34324A;
+    --faint: #26253A;
+    --field-line: #45425E;
+
+    --ink: #F1F0FA;
+    --ink-2: #CFCDE3;
+    --muted: #A4A1BA;
+
+    --accent: #9C90FF;
+    --accent-press: #B3A9FF;
+    --accent-fill: #6B5CF0;
+    --accent-tint: #26224A;
+    --selected-bg: #231F45;
+    --on-fill: #FFFFFF;
+
+    --warn: #F2C46B;
+    --warn-tint: #3A2E12;
+    --money: #5FD3A6;
+    --money-tint: #10302A;
+    --notice: #6CC6E0;
+    --notice-tint: #0F2C36;
+    --danger: #FF8A8F;
+    --danger-tint: #3A1719;
+
+    --sh: 0 1px 2px rgba(0, 0, 0, .40);
+    --sh-2: 0 4px 16px rgba(0, 0, 0, .45);
+    --sh-3: 0 12px 40px rgba(0, 0, 0, .55);
+  }
+}
+
+/* ---------- Tipografiya, o'lchamlar, harakat (§4–§5) ---------- */
+:root {
+  --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --text-scale: 1; /* "Katta matn" rejimi: 1.15 */
+
+  /* o'lcham / og'irlik / qator balandligi */
+  --display-size: calc(40px * var(--text-scale));
+  --display-weight: 800;
+  --display-lh: 1.1;
+  --title-1-size: calc(28px * var(--text-scale));
+  --title-1-weight: 800;
+  --title-1-lh: 1.2;
+  --title-2-size: calc(20px * var(--text-scale));
+  --title-2-weight: 700;
+  --title-2-lh: 1.3;
+  --body-size: calc(15px * var(--text-scale));
+  --body-weight: 500;
+  --body-lh: 1.5;
+  --body-s-size: calc(13.5px * var(--text-scale));
+  --body-s-weight: 500;
+  --body-s-lh: 1.45;
+  --button-size: calc(14.5px * var(--text-scale));
+  --button-weight: 650;
+  --button-lh: 1;
+  --eyebrow-size: calc(12px * var(--text-scale));
+  --eyebrow-weight: 700;
+  --eyebrow-lh: 1.2;
+  --eyebrow-tracking: .04em;
+
+  /* radius */
+  --r-card: 20px;
+  --r-control: 15px; /* tugma, maydon, variant plitkasi */
+  --r-chip: 999px;
+  --r-sheet: 26px;
+
+  /* oraliqlar */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 20px;
+  --s-6: 24px;
+  --s-8: 32px;
+  --s-10: 40px;
+  --gutter: 16px;
+
+  /* bosiladigan zona */
+  --btn-h: 50px;
+  --btn-h-s: 44px;
+  --hit: 44px;
+
+  /* harakat */
+  --ease: cubic-bezier(.2, .8, .2, 1);
+  --dur-fast: 150ms;
+  --dur: 220ms;
+  --dur-reveal: 400ms;
+  --shift: 12px;
+
+  /* Telegram safe area (TMA tashqarisida 0) */
+  --safe-top: calc(var(--tg-safe-area-inset-top, 0px) + var(--tg-content-safe-area-inset-top, 0px));
+  --safe-bottom: calc(var(--tg-safe-area-inset-bottom, 0px) + var(--tg-content-safe-area-inset-bottom, 0px));
+  --safe-left: calc(var(--tg-safe-area-inset-left, 0px) + var(--tg-content-safe-area-inset-left, 0px));
+  --safe-right: calc(var(--tg-safe-area-inset-right, 0px) + var(--tg-content-safe-area-inset-right, 0px));
+}
+
+:root[data-text="large"] {
+  --text-scale: 1.15;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0ms;
+    --dur: 0ms;
+    --dur-reveal: 0ms;
+    --shift: 0px;
+  }
+}
+
+/* Android LOW performance class — ilova <html data-motion="off"> qo'yadi */
+:root[data-motion="off"] {
+  --dur-fast: 0ms;
+  --dur: 0ms;
+  --dur-reveal: 0ms;
+  --shift: 0px;
+}
+
+/* ---------- Bazaviy qoidalar ---------- */
+html {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: var(--body-size);
+  font-weight: var(--body-weight);
+  line-height: var(--body-lh);
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+}
+
+.t-display  { font-size: var(--display-size); font-weight: var(--display-weight); line-height: var(--display-lh); font-feature-settings: "tnum"; }
+.t-title-1  { font-size: var(--title-1-size); font-weight: var(--title-1-weight); line-height: var(--title-1-lh); }
+.t-title-2  { font-size: var(--title-2-size); font-weight: var(--title-2-weight); line-height: var(--title-2-lh); }
+.t-body     { font-size: var(--body-size); font-weight: var(--body-weight); line-height: var(--body-lh); }
+.t-body-s   { font-size: var(--body-s-size); font-weight: var(--body-s-weight); line-height: var(--body-s-lh); color: var(--muted); }
+.t-eyebrow  { font-size: var(--eyebrow-size); font-weight: var(--eyebrow-weight); line-height: var(--eyebrow-lh); letter-spacing: var(--eyebrow-tracking); text-transform: uppercase; color: var(--muted); }
+.t-num      { font-feature-settings: "tnum"; font-variant-numeric: tabular-nums; }

@@ -1,0 +1,20 @@
+{
+  "style.pattern.name": "Охотник за закономерностями",
+  "style.pattern.emoji": "🧩",
+  "style.pattern.desc": "Быстро замечаете закономерности",
+  "style.numbers.name": "Мастер чисел",
+  "style.numbers.emoji": "🔢",
+  "style.numbers.desc": "Хорошо видите связи между числами",
+  "style.spatial.name": "Пространственный архитектор",
+  "style.spatial.emoji": "🧊",
+  "style.spatial.desc": "Легко вращаете фигуры в уме",
+  "style.balanced.name": "Гармоничный мыслитель",
+  "style.balanced.emoji": "⚖️",
+  "style.balanced.desc": "Одинаково уверенно во всех направлениях",
+  "strength.strong": "сильная",
+  "strength.medium": "средняя",
+  "strength.growth": "зона роста",
+  "domain.pattern": "Закономерности",
+  "domain.numbers": "Числа",
+  "domain.spatial": "Пространство"
+}

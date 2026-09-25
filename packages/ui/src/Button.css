@@ -1,0 +1,38 @@
+.iq-btn {
+  position: relative;
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: var(--btn-h);
+  padding: var(--s-2) var(--s-5);
+  border: 0; border-radius: var(--r-control);
+  font-family: inherit; font-size: var(--button-size); font-weight: var(--button-weight); line-height: 1.2;
+  text-align: center;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  transition: transform var(--dur-fast) var(--ease), opacity var(--dur-fast) var(--ease);
+}
+.iq-btn--s { min-height: var(--btn-h-s); padding: var(--s-1) var(--s-4); }
+.iq-btn--block { display: flex; width: 100%; }
+.iq-btn:active:not(:disabled):not(.is-loading) { transform: scale(.98); }
+.iq-btn:disabled { opacity: .45; cursor: default; }
+.iq-btn.is-loading { cursor: progress; }
+
+.iq-btn--primary { background: var(--accent-fill); color: var(--on-fill); }
+.iq-btn--secondary { background: var(--soft); color: var(--ink); }
+.iq-btn--ghost { background: transparent; color: var(--accent); min-height: var(--btn-h-s); }
+@media (hover: hover) {
+  .iq-btn--primary:hover:not(:disabled) { opacity: .9; }
+  .iq-btn--secondary:hover:not(:disabled) { background: var(--soft-2); }
+  .iq-btn--ghost:hover:not(:disabled) { background: var(--accent-tint); }
+}
+.iq-btn--secondary:active:not(:disabled) { background: var(--soft-2); }
+
+.iq-btn__label { transition: opacity var(--dur-fast) var(--ease); }
+.iq-btn.is-loading .iq-btn__label { opacity: 0; }
+.iq-btn__spinner {
+  position: absolute; top: 50%; left: 50%;
+  width: 20px; height: 20px; margin: -10px 0 0 -10px;
+  border: 2px solid currentColor; border-right-color: transparent; border-radius: 50%;
+  animation: iq-spin calc(var(--dur) * 4) linear infinite;
+}
+@keyframes iq-spin { to { transform: rotate(360deg); } }

@@ -1,0 +1,29 @@
+/* 3×3, cells fluid up to 88px, 6px gaps; fits 360px screens with 16px gutters. */
+.iq-matrix {
+  align-self: center;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 88px));
+  gap: 6px;
+  justify-content: center;
+  width: fit-content; max-width: 100%;
+  margin-inline: auto;
+  padding: var(--s-3);
+  background: var(--surface);
+  border-radius: var(--r-card);
+  box-shadow: var(--sh-2);
+  color: var(--ink);
+}
+.iq-matrix__cell {
+  aspect-ratio: 1;
+  width: 100%;
+  display: grid; place-items: center;
+  padding: 10%;
+}
+.iq-matrix__cell--q {
+  padding: 0;
+  background: var(--soft);
+  border: 2px dashed var(--field-line);
+  border-radius: 12px;
+  font-size: var(--title-1-size); font-weight: 800; line-height: 1;
+  color: var(--muted);
+}

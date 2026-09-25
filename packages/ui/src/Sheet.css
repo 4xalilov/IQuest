@@ -1,0 +1,24 @@
+.iq-sheet { position: fixed; inset: 0; z-index: 100; display: flex; flex-direction: column; justify-content: flex-end; }
+.iq-sheet__backdrop {
+  position: absolute; inset: 0;
+  background: var(--scrim, rgba(10, 9, 20, .5)); /* --scrim not in tokens yet */
+  opacity: 0;
+  transition: opacity var(--dur) var(--ease);
+}
+.iq-sheet__panel {
+  position: relative;
+  width: 100%; max-width: 560px; max-height: calc(100% - var(--safe-top) - var(--s-8));
+  margin: 0 auto;
+  overflow-y: auto; overscroll-behavior: contain;
+  padding: var(--s-2) calc(var(--gutter) + var(--safe-right)) calc(var(--s-5) + var(--safe-bottom)) calc(var(--gutter) + var(--safe-left));
+  background: var(--surface);
+  color: var(--ink);
+  border-radius: var(--r-sheet) var(--r-sheet) 0 0;
+  box-shadow: var(--sh-3);
+  transform: translateY(100%);
+  transition: transform var(--dur) var(--ease);
+  outline: none;
+}
+.iq-sheet.is-open .iq-sheet__backdrop { opacity: 1; }
+.iq-sheet.is-open .iq-sheet__panel { transform: none; }
+.iq-sheet__grip { display: block; width: 36px; height: 4px; margin: 0 auto var(--s-4); border-radius: 2px; background: var(--line); }

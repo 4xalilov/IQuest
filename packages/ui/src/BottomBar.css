@@ -1,0 +1,8 @@
+.iq-bottombar {
+  position: sticky; bottom: 0; z-index: 10;
+  display: flex; flex-direction: column; gap: var(--s-2);
+  margin-top: auto;
+  padding: var(--s-3) calc(var(--gutter) + var(--safe-right)) calc(var(--s-3) + var(--safe-bottom)) calc(var(--gutter) + var(--safe-left));
+  background: var(--bg);
+  box-shadow: 0 -1px 0 var(--faint);
+}

@@ -1,5 +1,18 @@
 {
+  "share.title": "Natijani ulashish",
   "share.cta": "Doʻstlarga yuborish",
+  "share.mode.style": "Faqat uslubim",
+  "share.mode.score": "Ballim bilan",
+  "share.score_hint": "Ballingiz faqat «Ballim bilan» tanlansa koʻrinadi.",
+  "share.channel.chat": "Chatga yuborish",
+  "share.channel.story": "Storyga joylash",
+  "share.channel.save": "Rasmni saqlash",
+  "share.preview.aria": "Ulashish kartasi",
+  "share.card.title": "Mening kognitiv uslubim",
+  "share.card.iq": "Taxminiy IQ: {low}–{high}",
+  "share.card.footer": "Sen ham sinab koʻr → @{bot} · iquest.uz",
+  "share.saved": "Rasm saqlandi",
+  "share.copied": "Matn nusxalandi",
   "share.style_only": "Men IQuest ilovasida aql testini topshirdim. Mening uslubim — «{style}». Seniki qanday? 👇",
   "share.with_score": "IQuest natijam: taxminan {low}–{high} 🧠 Eng kuchli tomonim — {strength}. Sen ham sinab koʻr 👇",
   "share.story": "Mening kognitiv uslubim: {style} @{bot}"

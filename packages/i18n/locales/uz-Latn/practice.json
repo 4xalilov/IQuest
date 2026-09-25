@@ -1,0 +1,13 @@
+{
+  "practice.eyebrow": "Mashq · {n}/{total}",
+  "practice.hint": "Bu mashq savoli — natijaga taʼsir qilmaydi. Javob bering va izohni oʻqing.",
+  "practice.status.correct": "Toʻgʻri",
+  "practice.status.wrong": "Unchalik emas",
+  "practice.correct": "Toʻgʻri! Har bir qatorda shakllar bittadan koʻpaymoqda.",
+  "practice.wrong": "Unchalik emas — qarang: …",
+  "practice.wrong.matrix": "Unchalik emas — qarang: har bir qatorda shakllar bittadan koʻpaymoqda.",
+  "practice.correct.series": "Toʻgʻri! Har bir keyingi son oldingisidan {step} ga katta.",
+  "practice.wrong.series": "Unchalik emas — qarang: har bir keyingi son oldingisidan {step} ga katta.",
+  "practice.cta": "Tushunarli",
+  "practice.ready": "Mashq tugadi. Endi asosiy test boshlanadi — unda toʻgʻri javoblar koʻrsatilmaydi."
+}

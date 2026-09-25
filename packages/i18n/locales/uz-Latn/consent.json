@@ -1,4 +1,13 @@
 {
+  "consent.title": "Maʼlumotlar va rozilik",
+  "consent.body": "Testni boshlash uchun javoblaringiz va javob vaqtingizni qayta ishlashimizga rozilik bering. Maʼlumotlaringizni sotmaymiz, ularni istalgan payt oʻchirishingiz mumkin.",
+  "consent.check": "Maxfiylik siyosati va foydalanish shartlarini qabul qilaman",
+  "consent.full": "Toʻliq matn",
+  "consent.cta": "Qabul qilish",
+  "consent.minor.title": "Ota-ona roziligi",
   "consent.minor": "18 yoshga toʻlmagan boʻlsangiz, natijangizni saqlash uchun ota-onangiz yoki vasiyingiz roziligi kerak.",
-  "consent.minor.cta": "Ota-onamga yuborish"
+  "consent.minor.chip": "Kutilmoqda",
+  "consent.minor.nosave": "Rozilik kelguncha natijangiz saqlanmaydi.",
+  "consent.minor.cta": "Ota-onamga yuborish",
+  "consent.minor.message": "Farzandingiz IQuest ilovasida mantiqiy fikrlash testini topshirdi. Natijani saqlash uchun roziligingiz kerak: {link}"
 }

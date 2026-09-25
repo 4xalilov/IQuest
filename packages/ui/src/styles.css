@@ -1,0 +1,7 @@
+/* @iquest/ui — global base. Import once at the app root (tokens + minimal reset).
+   Component styles are imported by each component itself. */
+@import '../tokens.css';
+@import './util.css';
+
+*, *::before, *::after { box-sizing: border-box; }
+button, input, select, textarea { font: inherit; color: inherit; }

@@ -1,0 +1,15 @@
+.iq-screen {
+  display: flex; flex-direction: column;
+  min-height: 100vh; min-height: 100dvh;
+  background: var(--bg); color: var(--ink);
+}
+.iq-screen__body {
+  flex: 1;
+  display: flex; flex-direction: column; gap: var(--s-4);
+  width: 100%; max-width: 560px; margin: 0 auto;
+  padding: calc(var(--s-4) + var(--safe-top)) calc(var(--gutter) + var(--safe-right)) var(--s-6) calc(var(--gutter) + var(--safe-left));
+  /* "backwards": no transform remains after the enter, so fixed children (Sheet) stay viewport-relative */
+  animation: iq-screen-in var(--dur) var(--ease) backwards;
+}
+.iq-screen .iq-bottombar > * { width: 100%; max-width: calc(560px - 2 * var(--gutter)); margin-inline: auto; }
+@keyframes iq-screen-in { from { opacity: 0; transform: translateY(var(--shift)); } }

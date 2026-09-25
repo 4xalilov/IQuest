@@ -1,0 +1,13 @@
+{
+  "help.title": "Yordam",
+  "help.faq": "Koʻp soʻraladigan savollar",
+  "help.q.free": "Test haqiqatan bepulmi?",
+  "help.a.free": "Ha. Asosiy natija bepul, obuna yoʻq. Faqat batafsil hisobot pullik — bir martalik toʻlov bilan.",
+  "help.q.retest": "Testni qayta topshirsam boʻladimi?",
+  "help.a.retest": "Rasmiy qayta test — 90 kundan keyin, yangi savollar bilan. Shunda natija halol boʻlib qoladi.",
+  "help.q.refund": "Pulni qaytarib olsam boʻladimi?",
+  "help.a.refund": "Ha, xariddan keyin 7 kun ichida. Bizga yozing — pulni qaytaramiz.",
+  "help.q.data": "Maʼlumotlarim nima uchun ishlatiladi?",
+  "help.a.data": "Javoblaringiz faqat natijani hisoblash va meʼyorlarni yaxshilash uchun ishlatiladi. Ularni sotmaymiz. Sozlamalarda istalgan payt oʻchirasiz.",
+  "help.contact": "Bizga yozish"
+}

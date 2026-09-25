@@ -1,0 +1,17 @@
+.iq-style {
+  display: flex; align-items: center; gap: var(--s-4);
+  padding: var(--s-5);
+  background: var(--surface); border-radius: var(--r-card); box-shadow: var(--sh-2);
+  color: var(--ink);
+}
+.iq-style__emoji {
+  flex-shrink: 0;
+  display: grid; place-items: center;
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  background: var(--accent-tint);
+  font-size: 36px; line-height: 1;
+}
+.iq-style__text { min-width: 0; }
+.iq-style__name { margin: 0; font-size: var(--title-2-size); font-weight: var(--title-2-weight); line-height: var(--title-2-lh); }
+.iq-style__desc { margin: 2px 0 0; font-size: var(--body-s-size); line-height: var(--body-s-lh); color: var(--muted); }

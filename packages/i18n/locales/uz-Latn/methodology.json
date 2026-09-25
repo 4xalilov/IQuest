@@ -1,0 +1,19 @@
+{
+  "method.eyebrow": "Test qanday ishlaydi",
+  "method.title": "Metodika",
+  "method.measures.title": "Nima oʻlchanadi",
+  "method.measures.body": "Test mantiqiy fikrlashning uch tomonini oʻlchaydi: shakllardagi naqshni topish (matritsalar), sonlar qatoridagi qonuniyat va shakllarni xayolda aylantirish. Har boʻlimda 9 ta savol va oʻz vaqti bor.",
+  "method.not_measures.title": "Nima oʻlchanmaydi",
+  "method.not_measures.body": "Ijodkorlik, bilim, hissiy intellekt, xarakter va hayotdagi muvaffaqiyat. Test tibbiy yoki psixologik tashxis qoʻymaydi.",
+  "method.norms.title": "Meʼyorlar",
+  "method.norms.body": "Natija dastlabki meʼyorlar asosida hisoblanadi (versiya {version}, {date}). Maʼlumot yigʻilgani sari meʼyorlar yangilanadi — bu haqda shu yerda yozamiz.",
+  "method.limits.title": "Cheklovlar",
+  "method.limits.body": "Test onlayn va nazoratsiz topshiriladi, shuning uchun natija aniq son emas, taxminiy oraliq sifatida koʻrsatiladi. Uyqu, charchoq va shovqin natijaga taʼsir qiladi.",
+  "method.claims.title": "Biz nimani daʼvo qilmaymiz",
+  "method.claims.1": "Bu klinik baholash emas.",
+  "method.claims.2": "Natija qadringizni ham, kelajagingizni ham belgilamaydi.",
+  "method.claims.3": "Biz IQ boʻyicha reyting tuzmaymiz hamda viloyat, jins yoki millatlarni taqqoslamaymiz.",
+  "method.claims.4": "Test oʻqishga yoki ishga qabul qilishdagi rasmiy baholash oʻrnini bosmaydi.",
+  "method.practice.title": "Qayta test va amaliyot effekti",
+  "method.practice.body": "Bir turdagi topshiriqlarni qayta yechsangiz, natija odatda biroz oshadi — bu aql oʻsgani emas, topshiriqqa koʻnikish. Shuning uchun rasmiy qayta test 90 kundan keyin, yangi savollar bilan beriladi."
+}

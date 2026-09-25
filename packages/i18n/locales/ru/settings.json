@@ -1,0 +1,22 @@
+{
+  "settings.title": "Настройки",
+  "settings.language": "Язык",
+  "settings.notifications": "Уведомления",
+  "settings.notif.puzzle": "Головоломка дня",
+  "settings.notif.retest": "Напоминание о повторном тесте",
+  "settings.notif.results": "Результаты и отчёты",
+  "settings.notif.time": "Время напоминаний",
+  "settings.notif.off": "Выключены",
+  "settings.large_text": "Крупный текст",
+  "settings.privacy": "Конфиденциальность",
+  "settings.terms": "Условия использования",
+  "settings.refund": "Возврат средств",
+  "settings.methodology": "Методика",
+  "settings.help": "Помощь",
+  "settings.version": "Версия {v}",
+  "settings.delete": "Удалить мои данные",
+  "settings.delete.title": "Удалить ваши данные?",
+  "settings.delete.body": "Результаты, ответы и отчёты будут удалены навсегда. Это действие нельзя отменить.",
+  "settings.delete.cta": "Удалить",
+  "settings.delete.done": "Ваши данные удалены"
+}

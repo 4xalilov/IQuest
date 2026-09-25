@@ -1,3 +1,14 @@
 {
-  "home.cta": "Начать тест"
+  "home.cta": "Начать тест",
+  "home.test.title": "IQ-тест: логическое мышление",
+  "home.test.meta": "15 минут · 27 вопросов",
+  "home.chip.free": "Бесплатно",
+  "home.chip.in_progress": "В процессе",
+  "home.chip.done": "Пройден",
+  "home.resume.title": "Незавершённый тест",
+  "home.resume.meta": "Раздел {section} · вопрос {item}",
+  "home.resume.cta": "Продолжить",
+  "home.results.title": "Мои результаты",
+  "home.results.meta": "Последний результат: {date}",
+  "home.results.cta": "Открыть"
 }

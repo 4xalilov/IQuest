@@ -1,0 +1,16 @@
+.iq-chip {
+  display: inline-flex; align-items: center; gap: var(--s-1);
+  max-width: 100%;
+  min-height: 24px;
+  padding: var(--s-1) 10px;
+  border-radius: var(--r-chip);
+  font-size: var(--eyebrow-size); font-weight: 700; line-height: 1.2;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  flex-shrink: 0;
+}
+.iq-chip--neutral { background: var(--soft); color: var(--ink-2); }
+.iq-chip--accent { background: var(--accent-tint); color: var(--accent); }
+.iq-chip--warn { background: var(--warn-tint); color: var(--warn); }
+.iq-chip--money { background: var(--money-tint); color: var(--money); }
+.iq-chip--notice { background: var(--notice-tint); color: var(--notice); }
+.iq-chip--danger { background: var(--danger-tint); color: var(--danger); }

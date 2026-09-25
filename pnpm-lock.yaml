@@ -44,11 +44,26 @@ importers:
 
   packages/engine: {}
 
-  packages/i18n: {}
+  packages/i18n:
+    dependencies:
+      '@preact/signals':
+        specifier: ^2.11.2
+        version: 2.11.2(preact@10.29.8)
+      preact:
+        specifier: ^10.29.8
+        version: 10.29.8
 
-  packages/tg: {}
+  packages/tg:
+    dependencies:
+      preact:
+        specifier: ^10.29.8
+        version: 10.29.8
 
-  packages/ui: {}
+  packages/ui:
+    dependencies:
+      preact:
+        specifier: ^10.29.8
+        version: 10.29.8
 
 packages:
 

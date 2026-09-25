@@ -1,0 +1,34 @@
+.iq-band { text-align: center; }
+.iq-band__head { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: var(--s-2); }
+.iq-band__label {
+  font-size: var(--eyebrow-size); font-weight: var(--eyebrow-weight); line-height: var(--eyebrow-lh);
+  letter-spacing: var(--eyebrow-tracking); text-transform: uppercase; color: var(--muted);
+}
+.iq-band__value {
+  margin: var(--s-2) 0 var(--s-3);
+  font-size: var(--display-size); font-weight: var(--display-weight); line-height: var(--display-lh);
+  font-feature-settings: "tnum"; font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+.iq-band__curve { display: block; width: 100%; height: 80px; overflow: visible; }
+.iq-band__line { fill: none; stroke: var(--muted); stroke-width: 2; stroke-linejoin: round; }
+.iq-band__axis { stroke: var(--line); stroke-width: 1; }
+.iq-band__fill { fill: var(--accent); opacity: .22; }
+.iq-band__base { fill: var(--accent); }
+/* Peak moment: band spreads from its centre (scaleX, 400ms). */
+.iq-band__hl {
+  transform-box: fill-box; transform-origin: center;
+  animation: iq-band-reveal var(--dur-reveal) var(--ease) backwards;
+}
+@keyframes iq-band-reveal { from { transform: scaleX(0); } }
+.iq-band__ticks { position: relative; height: 18px; margin-top: var(--s-1); }
+.iq-band__ticks span {
+  position: absolute; top: 0; transform: translateX(-50%);
+  font-size: 11px; font-weight: 600; line-height: 18px; color: var(--muted);
+  font-feature-settings: "tnum"; font-variant-numeric: tabular-nums;
+}
+.iq-band__pct { margin: var(--s-2) 0 0; font-size: var(--body-s-size); line-height: var(--body-s-lh); color: var(--ink-2); }
+
+.iq-band--notice { text-align: left; }
+.iq-band--notice .iq-band__head { justify-content: space-between; }
+.iq-band__message { margin: var(--s-2) 0 0; color: var(--ink); }

@@ -1,0 +1,7 @@
+.iq-card { background: var(--surface); border-radius: var(--r-card); box-shadow: var(--sh-2); color: var(--ink); min-width: 0; }
+.iq-card--warn { background: var(--warn-tint); box-shadow: none; }
+.iq-card--notice { background: var(--notice-tint); box-shadow: none; }
+.iq-card--p-none { padding: 0; }
+.iq-card--p-s { padding: var(--s-3); }
+.iq-card--p-m { padding: var(--s-4); }
+.iq-card--p-l { padding: var(--s-5); }

@@ -1,0 +1,24 @@
+.iq-timer { display: inline-flex; flex-shrink: 0; color: var(--ink-2); }
+.iq-timer.is-warn { color: var(--warn); }
+.iq-timer__btn {
+  display: inline-flex; align-items: center; gap: var(--s-2);
+  min-height: var(--hit);
+  margin-inline-end: calc(var(--s-2) * -1);
+  padding: 0 var(--s-2);
+  border: 0; border-radius: var(--r-chip);
+  background: transparent; color: inherit;
+  font-family: inherit; font-size: var(--body-size); font-weight: 650; line-height: 1;
+  font-feature-settings: "tnum"; font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+@media (hover: hover) { .iq-timer__btn:hover { background: var(--soft); } }
+.iq-timer__ring { width: 18px; height: 18px; flex-shrink: 0; }
+.iq-timer__track { fill: none; stroke: var(--soft-2); stroke-width: 3; }
+.iq-timer__arc { fill: none; stroke: currentColor; stroke-width: 3; stroke-linecap: round; }
+.iq-timer.is-hidden .iq-timer__btn { font-size: var(--body-s-size); font-weight: 600; }
+.iq-timer__warn {
+  font-size: var(--body-s-size); font-weight: 600;
+}
+.iq-timer__warn::before { content: "· "; }

@@ -1,0 +1,12 @@
+{
+  "report.title": "Подробный отчёт",
+  "report.sections": "Разбор по разделам",
+  "report.time": "Время",
+  "report.time.value": "{minutes} мин",
+  "report.accuracy": "Точность",
+  "report.accuracy.value": "Верно: {correct} из {total}",
+  "report.plan": "План тренировок на 4 недели",
+  "report.plan.week": "Неделя {n}",
+  "report.ai": "Комментарий ИИ",
+  "report.pdf": "Скачать PDF"
+}

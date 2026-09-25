@@ -1,0 +1,12 @@
+{
+  "profile.title": "Profil",
+  "results.title": "Natijalarim",
+  "results.item.title": "IQ testi · {date}",
+  "results.empty": "Hali test topshirmagansiz. Birinchi natijangiz shu yerda paydo boʻladi.",
+  "results.empty.cta": "Testni boshlash",
+  "profile.retest": "Keyingi rasmiy test: {date}",
+  "profile.retest.days": "Qayta test {days} kundan keyin ochiladi",
+  "profile.purchases": "Xaridlar",
+  "profile.purchases.empty": "Hali xarid yoʻq.",
+  "profile.purchase.report": "Batafsil hisobot · {date}"
+}

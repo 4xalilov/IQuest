@@ -1,0 +1,18 @@
+.iq-progress { display: flex; flex-direction: column; gap: var(--s-1); }
+.iq-progress__head { display: flex; align-items: center; justify-content: space-between; gap: var(--s-2); min-height: var(--hit); }
+.iq-progress__label {
+  min-width: 0;
+  font-size: var(--eyebrow-size); font-weight: var(--eyebrow-weight); line-height: var(--eyebrow-lh);
+  letter-spacing: var(--eyebrow-tracking); text-transform: uppercase;
+  color: var(--muted);
+}
+.iq-progress__row { display: flex; align-items: center; gap: var(--s-3); }
+.iq-progress__segs { flex: 1; display: grid; grid-template-columns: repeat(var(--iq-items, 9), minmax(0, 1fr)); gap: var(--s-1); }
+.iq-progress__seg { display: block; height: 6px; border-radius: 3px; background: var(--soft-2); }
+.iq-progress__seg.is-on { background: var(--accent); }
+.iq-progress__count {
+  min-width: 3ch; text-align: right;
+  font-size: var(--body-s-size); font-weight: 600; line-height: var(--body-s-lh);
+  font-feature-settings: "tnum"; font-variant-numeric: tabular-nums;
+  color: var(--muted);
+}

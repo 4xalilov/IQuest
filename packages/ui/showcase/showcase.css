@@ -1,0 +1,23 @@
+/* Showcase chrome only (not part of the library). */
+.sc-toolbar { display: flex; gap: var(--s-2); flex-wrap: wrap; }
+.sc-tb {
+  min-height: var(--hit); padding: 0 var(--s-4);
+  border: 0; border-radius: var(--r-chip);
+  background: var(--soft); color: var(--ink);
+  font: inherit; font-size: var(--body-s-size); font-weight: 600; cursor: pointer;
+}
+.sc-tb[aria-pressed="true"] { background: var(--accent-tint); color: var(--accent); }
+.sc-tb:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.sc-section { display: flex; flex-direction: column; gap: var(--s-3); padding-top: var(--s-4); border-top: 1px solid var(--line); }
+.sc-h { margin: 0; font-size: var(--title-2-size); font-weight: 700; color: var(--ink); }
+.sc-state { display: flex; flex-direction: column; gap: var(--s-2); }
+.sc-state__name { font-size: var(--eyebrow-size); font-weight: 700; letter-spacing: var(--eyebrow-tracking); text-transform: uppercase; color: var(--muted); }
+.sc-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-2); }
+.sc-col { display: flex; flex-direction: column; gap: var(--s-2); }
+.sc-p { margin: 0; color: var(--ink-2); }
+.sc-glyphs { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-2); }
+.sc-glyph { aspect-ratio: 1; padding: 12%; background: var(--surface); border-radius: var(--r-control); color: var(--ink); }
+.sc-figure-target { align-self: center; padding: var(--s-3); background: var(--surface); border-radius: var(--r-card); box-shadow: var(--sh-2); color: var(--ink); }
+.sc-bb { margin-inline: calc(var(--gutter) * -1); }
+.sc-bb .iq-bottombar { position: static; }
+.sc-sheet-title { margin: 0 0 var(--s-2); font-size: var(--title-2-size); font-weight: 700; }

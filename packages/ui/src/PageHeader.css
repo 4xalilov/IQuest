@@ -1,0 +1,13 @@
+.iq-header { display: flex; flex-direction: column; gap: var(--s-1); }
+.iq-header__eyebrow {
+  font-size: var(--eyebrow-size); font-weight: var(--eyebrow-weight); line-height: var(--eyebrow-lh);
+  letter-spacing: var(--eyebrow-tracking); text-transform: uppercase; color: var(--muted);
+}
+.iq-header__row { display: flex; align-items: center; justify-content: space-between; gap: var(--s-2) var(--s-3); flex-wrap: wrap; }
+.iq-header__title {
+  margin: 0; min-width: 0;
+  font-size: var(--title-1-size); font-weight: var(--title-1-weight); line-height: var(--title-1-lh);
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+.iq-header__sub { margin: var(--s-1) 0 0; color: var(--ink-2); }

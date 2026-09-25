@@ -1,0 +1,10 @@
+.iq-empty { display: flex; flex-direction: column; align-items: center; gap: var(--s-3); padding: var(--s-8) var(--s-4); text-align: center; }
+.iq-empty__icon {
+  display: grid; place-items: center;
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--soft); color: var(--muted);
+  font-size: 28px; line-height: 1;
+}
+.iq-empty__icon svg { width: 24px; height: 24px; }
+.iq-empty__text { margin: 0; max-width: 32ch; color: var(--ink-2); }
+.iq-empty__action { margin-top: var(--s-1); }

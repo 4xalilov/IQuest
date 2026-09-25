@@ -1,0 +1,15 @@
+.iq-bars {
+  margin: 0;
+  display: grid; grid-template-columns: max-content minmax(64px, 1fr) max-content;
+  gap: var(--s-3);
+  align-items: center;
+}
+.iq-bars__row { display: contents; }
+.iq-bars__label { font-weight: 600; color: var(--ink); }
+.iq-bars__track { margin: 0; height: 10px; border-radius: 5px; background: var(--soft); overflow: hidden; }
+.iq-bars__track i {
+  display: block; height: 100%;
+  border-radius: 5px;
+  background: var(--ink-2);
+}
+.iq-bars__word { margin: 0; font-size: var(--body-s-size); line-height: var(--body-s-lh); color: var(--muted); max-width: 12ch; }

@@ -1,3 +1,14 @@
 {
-  "home.cta": "Testni boshlash"
+  "home.cta": "Testni boshlash",
+  "home.test.title": "IQ testi: mantiqiy fikrlash",
+  "home.test.meta": "15 daqiqa · 27 ta savol",
+  "home.chip.free": "Bepul",
+  "home.chip.in_progress": "Davom etmoqda",
+  "home.chip.done": "Topshirilgan",
+  "home.resume.title": "Tugallanmagan test",
+  "home.resume.meta": "{section}-boʻlim · {item}-savol",
+  "home.resume.cta": "Davom ettirish",
+  "home.results.title": "Natijalarim",
+  "home.results.meta": "Oxirgi natija: {date}",
+  "home.results.cta": "Koʻrish"
 }

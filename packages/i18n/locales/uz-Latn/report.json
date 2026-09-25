@@ -1,0 +1,12 @@
+{
+  "report.title": "Batafsil hisobot",
+  "report.sections": "Boʻlimlar tahlili",
+  "report.time": "Vaqt",
+  "report.time.value": "{minutes} daqiqa",
+  "report.accuracy": "Aniqlik",
+  "report.accuracy.value": "{correct}/{total} toʻgʻri",
+  "report.plan": "4 haftalik mashq rejasi",
+  "report.plan.week": "{n}-hafta",
+  "report.ai": "AI izohi",
+  "report.pdf": "PDF yuklab olish"
+}

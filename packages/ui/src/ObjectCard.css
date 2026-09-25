@@ -1,0 +1,34 @@
+.iq-ocard {
+  position: relative;
+  display: flex; flex-direction: column; gap: var(--s-2);
+  padding: var(--s-4);
+  background: var(--surface); border-radius: var(--r-card); box-shadow: var(--sh-2);
+  color: var(--ink);
+  transition: transform var(--dur-fast) var(--ease);
+}
+.iq-ocard.is-clickable:active { transform: scale(.99); }
+.iq-ocard__top { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--s-3); }
+.iq-ocard__title {
+  margin: 0; min-width: 0;
+  font-size: var(--title-2-size); font-weight: var(--title-2-weight); line-height: var(--title-2-lh);
+  overflow-wrap: anywhere;
+}
+.iq-ocard__top .iq-chip { margin-top: 2px; }
+/* Stretched button: whole card is the hit area; action stays on top. */
+.iq-ocard__link {
+  all: unset;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.iq-ocard__link::after { content: ""; position: absolute; inset: 0; border-radius: var(--r-card); }
+.iq-ocard__link:focus-visible { outline: none; }
+.iq-ocard__link:focus-visible::after { outline: 2px solid var(--accent); outline-offset: 2px; }
+.iq-ocard__meta {
+  margin: 0;
+  font-size: var(--body-s-size); line-height: var(--body-s-lh); color: var(--muted);
+  font-feature-settings: "tnum"; font-variant-numeric: tabular-nums;
+}
+.iq-ocard__bar { height: 6px; border-radius: 3px; background: var(--soft-2); overflow: hidden; }
+.iq-ocard__bar i { display: block; height: 100%; border-radius: 3px; background: var(--accent); }
+.iq-ocard__action { position: relative; z-index: 1; display: flex; gap: var(--s-2); margin-top: var(--s-1); }
+.iq-ocard__action > * { flex: 1; }

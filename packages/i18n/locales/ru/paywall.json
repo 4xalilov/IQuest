@@ -1,3 +1,24 @@
 {
-  "paywall.terms": "Разовая оплата. Не подписка. Возврат в течение 7 дней."
+  "paywall.title": "Подробный отчёт · {price}",
+  "paywall.lead": "Что входит в отчёт",
+  "paywall.items": "✔ Разбор по 3 разделам ✔ Время и точность по каждому разделу ✔ Личный план тренировок на 4 недели ✔ PDF",
+  "paywall.item.sections": "Разбор по 3 разделам",
+  "paywall.item.timing": "Время и точность по каждому разделу",
+  "paywall.item.plan": "Личный план тренировок на 4 недели",
+  "paywall.item.pdf": "Отчёт в PDF",
+  "paywall.terms": "Разовая оплата. Не подписка. Возврат в течение 7 дней.",
+  "paywall.cta": "Получить отчёт",
+  "paywall.buy_with_price": "Получить отчёт · {price}",
+  "paywall.decline": "Не сейчас",
+  "paywall.refund": "Условия возврата",
+  "payment.pending": "Оплата подтверждается",
+  "payment.pending.body": "Обычно это занимает меньше минуты. Отчёт откроется здесь, как только будет готов.",
+  "payment.failed": "Оплата не прошла",
+  "payment.failed.body": "Не удалось завершить оплату. Попробуйте ещё раз.",
+  "payment.cancelled": "Оплата отменена",
+  "payment.success": "Оплата прошла",
+  "payment.success.body": "Спасибо! Ваш подробный отчёт готов.",
+  "payment.retry": "Попробовать снова",
+  "payment.open_report": "Открыть отчёт",
+  "payment.chip.paid": "Куплено"
 }

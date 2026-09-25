@@ -2,6 +2,11 @@
  * IQuest — "Siyoh" mavzusi (DESIGN.md §3–§5).
  * Hex qiymatlar faqat shu faylda. Komponentlar rangni rol nomi bilan oladi: var(--accent).
  * Mavzu: <html data-theme="light|dark">. Atribut bo'lmasa — tizim sozlamasi.
+ *
+ * v1.1 (docs/DESIGN-REVIEW.md): --money (yorug') to'qroq — --money/--money-tint 4.38 → 5.13;
+ * yangi: --accent-fill-press, --control-edge (≥3:1 chegara), --font-brand, --matrix-cell/--matrix-gap/--tile-gap;
+ * qorong'i --sh* ga 1px yorug' halqa qo'shildi (qora fonda soya ko'rinmaydi); --font — tizim shrifti (0 KB).
+ * Mavjud o'zgaruvchi nomlari o'zgarmagan.
  */
 
 /* ---------- Yorug' (standart) ---------- */
@@ -16,6 +21,7 @@
   --line: #DEDBEA;
   --faint: #ECEAF4;
   --field-line: #CFCBE0;
+  --control-edge: #7F7B96; /* checkbox/radio/input chegarasi: --surface 4.1, --soft 3.5, --bg 3.7 (≥3:1) */
 
   --ink: #1D1B2E;
   --ink-2: #3A3752;
@@ -24,13 +30,14 @@
   --accent: #4F3FD0;
   --accent-press: #3F31B0;
   --accent-fill: #4F3FD0;
+  --accent-fill-press: #3F31B0; /* bosilgan tugma foni; --on-fill bilan 9.2:1 */
   --accent-tint: #ECEAFB;
   --selected-bg: #F1EFFD;
   --on-fill: #FFFFFF;
 
   --warn: #8A5A00;
   --warn-tint: #FBF1DD;
-  --money: #087F5B;
+  --money: #077350; /* 1.1: #087F5B --money-tint ustida 4.38 edi */
   --money-tint: #E5F3EC;
   --notice: #0E6E8C;
   --notice-tint: #E3F2F7;
@@ -53,6 +60,7 @@
   --line: #34324A;
   --faint: #26253A;
   --field-line: #45425E;
+  --control-edge: #7A7696; /* --surface 3.9, --soft 3.5, --bg 4.3 */
 
   --ink: #F1F0FA;
   --ink-2: #CFCDE3;
@@ -61,6 +69,7 @@
   --accent: #9C90FF;
   --accent-press: #B3A9FF;
   --accent-fill: #6B5CF0;
+  --accent-fill-press: #5647D8; /* --accent-press (#B3A9FF) fon sifatida oq matn bilan 2.1 — ishlatmang */
   --accent-tint: #26224A;
   --selected-bg: #231F45;
   --on-fill: #FFFFFF;
@@ -74,9 +83,10 @@
   --danger: #FF8A8F;
   --danger-tint: #3A1719;
 
-  --sh: 0 1px 2px rgba(0, 0, 0, .40);
-  --sh-2: 0 4px 16px rgba(0, 0, 0, .45);
-  --sh-3: 0 12px 40px rgba(0, 0, 0, .55);
+  /* qorong'ida soya ko'rinmaydi (--surface/--bg 1.09) — 1px yorug' halqa sirtni ajratadi */
+  --sh: 0 0 0 1px rgba(255, 255, 255, .06), 0 1px 2px rgba(0, 0, 0, .40);
+  --sh-2: 0 0 0 1px rgba(255, 255, 255, .06), 0 4px 16px rgba(0, 0, 0, .45);
+  --sh-3: 0 0 0 1px rgba(255, 255, 255, .08), 0 12px 40px rgba(0, 0, 0, .55);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -90,6 +100,7 @@
     --line: #34324A;
     --faint: #26253A;
     --field-line: #45425E;
+    --control-edge: #7A7696;
 
     --ink: #F1F0FA;
     --ink-2: #CFCDE3;
@@ -98,6 +109,7 @@
     --accent: #9C90FF;
     --accent-press: #B3A9FF;
     --accent-fill: #6B5CF0;
+    --accent-fill-press: #5647D8;
     --accent-tint: #26224A;
     --selected-bg: #231F45;
     --on-fill: #FFFFFF;
@@ -111,15 +123,18 @@
     --danger: #FF8A8F;
     --danger-tint: #3A1719;
 
-    --sh: 0 1px 2px rgba(0, 0, 0, .40);
-    --sh-2: 0 4px 16px rgba(0, 0, 0, .45);
-    --sh-3: 0 12px 40px rgba(0, 0, 0, .55);
+    /* qorong'ida soya ko'rinmaydi (--surface/--bg 1.09) — 1px yorug' halqa sirtni ajratadi */
+    --sh: 0 0 0 1px rgba(255, 255, 255, .06), 0 1px 2px rgba(0, 0, 0, .40);
+    --sh-2: 0 0 0 1px rgba(255, 255, 255, .06), 0 4px 16px rgba(0, 0, 0, .45);
+    --sh-3: 0 0 0 1px rgba(255, 255, 255, .08), 0 12px 40px rgba(0, 0, 0, .55);
   }
 }
 
 /* ---------- Tipografiya, o'lchamlar, harakat (§4–§5) ---------- */
 :root {
-  --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  /* 1.1: TMA'da tizim shrifti — 0 KB, FOUT/siljish yo'q, Telegram UI bilan bir xil. Inter faqat brend joylarida. */
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-brand: "Inter", var(--font); /* logo, iquest.uz, share kartalar, PDF */
   --text-scale: 1; /* "Katta matn" rejimi: 1.15 */
 
   /* o'lcham / og'irlik / qator balandligi */
@@ -168,6 +183,11 @@
   --btn-h-s: 44px;
   --hit: 44px;
 
+  /* test itemlari (DESIGN.md §6) — S5 360×640 viewportda ham scrollsiz sig'ishi uchun */
+  --matrix-cell: 88px;
+  --matrix-gap: 6px;
+  --tile-gap: 8px;
+
   /* harakat */
   --ease: cubic-bezier(.2, .8, .2, 1);
   --dur-fast: 150ms;
@@ -184,6 +204,14 @@
 
 :root[data-text="large"] {
   --text-scale: 1.15;
+}
+
+/* Past viewport (Telegram + BottomButton + Android nav bar): matritsa kichrayadi */
+@media (max-height: 720px) {
+  :root { --matrix-cell: 76px; }
+}
+@media (max-height: 620px) {
+  :root { --matrix-cell: 64px; --matrix-gap: 4px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

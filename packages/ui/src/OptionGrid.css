@@ -1,0 +1,5 @@
+.iq-options {
+  display: grid;
+  grid-template-columns: repeat(var(--iq-cols, 4), minmax(0, 1fr));
+  gap: var(--s-2);
+}

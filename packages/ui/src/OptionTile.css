@@ -1,0 +1,43 @@
+.iq-tile {
+  position: relative;
+  display: grid; place-items: center;
+  min-width: var(--hit); min-height: var(--hit);
+  aspect-ratio: 1;
+  padding: 10%;
+  border: 0; border-radius: var(--r-control);
+  background: var(--surface);
+  box-shadow: var(--sh);
+  color: var(--ink);
+  font-family: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform var(--dur-fast) var(--ease);
+}
+.iq-tile:active:not(:disabled) { transform: scale(.97); }
+@media (hover: hover) {
+  .iq-tile:hover:not(:disabled):not(.is-selected) { box-shadow: var(--sh), inset 0 0 0 1px var(--field-line); }
+}
+.iq-tile.is-selected { background: var(--selected-bg); box-shadow: inset 0 0 0 2px var(--accent); }
+.iq-tile:disabled { opacity: .45; cursor: default; }
+.iq-tile__body { display: grid; place-items: center; width: 100%; height: 100%; }
+.iq-tile__body > svg { width: 100%; height: 100%; }
+
+/* ✓ badge: optically centred check in a 20px accent disc, top-right corner. */
+.iq-tile__check {
+  position: absolute; top: 5px; right: 5px;
+  width: 20px; height: 20px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--surface);
+}
+.iq-tile__check svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Number options: shorter than square, big tabular figure. */
+.iq-options--wide .iq-tile {
+  aspect-ratio: auto;
+  min-height: 64px;
+  padding: var(--s-2) var(--s-3);
+  font-size: var(--title-2-size); font-weight: 700; line-height: 1.2;
+  font-feature-settings: "tnum"; font-variant-numeric: tabular-nums;
+}

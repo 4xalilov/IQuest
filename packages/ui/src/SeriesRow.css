@@ -1,0 +1,21 @@
+.iq-series {
+  margin: 0;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+  gap: var(--s-2) var(--s-3);
+  font-size: min(var(--display-size), 11vw);
+  font-weight: var(--display-weight);
+  line-height: var(--display-lh);
+  font-feature-settings: "tnum"; font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+.iq-series__term { white-space: nowrap; }
+.iq-series__sep { color: var(--muted); }
+.iq-series__q {
+  display: inline-grid; place-items: center;
+  min-width: 1.5em; height: 1.3em;
+  padding: 0 .25em;
+  background: var(--soft);
+  border: 2px dashed var(--field-line);
+  border-radius: var(--r-control);
+  color: var(--muted);
+}

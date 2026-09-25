@@ -1,0 +1,22 @@
+{
+  "settings.title": "Sozlamalar",
+  "settings.language": "Til",
+  "settings.notifications": "Bildirishnomalar",
+  "settings.notif.puzzle": "Kunlik jumboq",
+  "settings.notif.retest": "Qayta test eslatmasi",
+  "settings.notif.results": "Natija va hisobot",
+  "settings.notif.time": "Eslatma vaqti",
+  "settings.notif.off": "Oʻchirilgan",
+  "settings.large_text": "Katta matn",
+  "settings.privacy": "Maxfiylik",
+  "settings.terms": "Foydalanish shartlari",
+  "settings.refund": "Pulni qaytarish",
+  "settings.methodology": "Metodika",
+  "settings.help": "Yordam",
+  "settings.version": "Versiya {v}",
+  "settings.delete": "Maʼlumotlarimni oʻchirish",
+  "settings.delete.title": "Maʼlumotlaringiz oʻchirilsinmi?",
+  "settings.delete.body": "Natijalar, javoblar va hisobotlar butunlay oʻchiriladi. Buni ortga qaytarib boʻlmaydi.",
+  "settings.delete.cta": "Oʻchirish",
+  "settings.delete.done": "Maʼlumotlaringiz oʻchirildi"
+}

@@ -1,0 +1,12 @@
+{
+  "profile.title": "Профиль",
+  "results.title": "Мои результаты",
+  "results.item.title": "IQ-тест · {date}",
+  "results.empty": "Вы ещё не проходили тест. Здесь появится ваш первый результат.",
+  "results.empty.cta": "Начать тест",
+  "profile.retest": "Следующий официальный тест: {date}",
+  "profile.retest.days": "Повторный тест откроется через {days} дн.",
+  "profile.purchases": "Покупки",
+  "profile.purchases.empty": "Покупок пока нет.",
+  "profile.purchase.report": "Подробный отчёт · {date}"
+}

@@ -1,0 +1,19 @@
+{
+  "share.title": "Поделиться результатом",
+  "share.cta": "Отправить друзьям",
+  "share.mode.style": "Только мой стиль",
+  "share.mode.score": "С моим баллом",
+  "share.score_hint": "Балл будет виден, только если выбрать «С моим баллом».",
+  "share.channel.chat": "Отправить в чат",
+  "share.channel.story": "Опубликовать в сторис",
+  "share.channel.save": "Сохранить картинку",
+  "share.preview.aria": "Карточка для публикации",
+  "share.card.title": "Мой когнитивный стиль",
+  "share.card.iq": "Примерный IQ: {low}–{high}",
+  "share.card.footer": "Попробуй и ты → @{bot} · iquest.uz",
+  "share.saved": "Картинка сохранена",
+  "share.copied": "Текст скопирован",
+  "share.style_only": "Мой когнитивный стиль в IQuest — «{style}». А какой у тебя? Проверь 👇",
+  "share.with_score": "Мой результат в IQuest: примерно {low}–{high} 🧠 Моя сильная сторона — {strength}. Попробуй и ты 👇",
+  "share.story": "Мой когнитивный стиль: {style} @{bot}"
+}

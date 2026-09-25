@@ -5,10 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
 <meta name="color-scheme" content="light dark">
 <title>IQuest</title>
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<!-- defer: not render-blocking; deferred classic scripts run before module scripts, so window.Telegram is ready for tg.init() -->
+<script src="https://telegram.org/js/telegram-web-app.js" defer></script>
+<style>
+  /* S0 inline shell: same background as --bg, logo only, no spinner (DESIGN 1.1 §9 S0) */
+  html,body{margin:0;background:#F5F4FB}
+  @media (prefers-color-scheme:dark){html,body{background:#121120}}
+  .boot{min-height:100vh;min-height:100dvh;display:grid;place-items:center}
+  .boot svg{width:56px;height:56px}
+</style>
 </head>
 <body>
-<div id="app"></div>
+<div id="app"><div class="boot" aria-hidden="true"><svg viewBox="0 0 64 64"><rect width="64" height="64" rx="26" fill="#4F3FD0"/><circle cx="30" cy="30" r="13" fill="none" stroke="#fff" stroke-width="6"/><path d="M36 36l12 12" stroke="#fff" stroke-width="6" stroke-linecap="round"/></svg></div></div>
 <script type="module" src="/src/main.tsx"></script>
 </body>
 </html>

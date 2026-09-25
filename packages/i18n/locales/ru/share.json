@@ -15,5 +15,6 @@
   "share.copied": "Текст скопирован",
   "share.style_only": "Мой когнитивный стиль в IQuest — «{style}». А какой у тебя? Проверь 👇",
   "share.with_score": "Мой результат в IQuest: примерно {low}–{high} 🧠 Моя сильная сторона — {strength}. Попробуй и ты 👇",
-  "share.story": "Мой когнитивный стиль: {style} @{bot}"
+  "share.story": "Мой когнитивный стиль: {style} @{bot}",
+  "share.mode.label": "Что показать на картинке?"
 }

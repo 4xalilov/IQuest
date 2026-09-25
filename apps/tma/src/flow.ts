@@ -1,16 +1,16 @@
 import { tg } from '@iquest/tg';
-import { replace, reset } from './router';
+import { navigate, reset } from './router';
 import { continueTest, isMinor, parentAsked, practiceDone, prepareTest, profile } from './state';
 
 /** S3 "Boshlash": minors first go to S18; then practice (first time) or straight into S5. */
 export function beginTest(): void {
   if (isMinor(profile.value.ageBand) && !parentAsked.value) {
-    replace({ name: 'parent' });
+    navigate({ name: 'parent' });
     return;
   }
   prepareTest();
   if (!practiceDone.value) {
-    replace({ name: 'practice', index: 0 });
+    navigate({ name: 'practice', index: 0 });
     return;
   }
   startSection();

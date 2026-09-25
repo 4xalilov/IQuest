@@ -37,5 +37,6 @@
   "survey.distracted.hint": "Это поможет правильно понять результат.",
   "survey.distracted.yes": "Да",
   "survey.distracted.no": "Нет",
-  "survey.cta": "Показать результат"
+  "survey.cta": "Показать результат",
+  "survey.distracted.some": "Немного"
 }

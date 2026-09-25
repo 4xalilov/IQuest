@@ -6,7 +6,7 @@
   "paywall.item.timing": "Har boʻlim boʻyicha vaqt va aniqlik",
   "paywall.item.plan": "4 haftalik shaxsiy mashq rejasi",
   "paywall.item.pdf": "PDF hisobot",
-  "paywall.terms": "Bir martalik toʻlov. Obuna emas. 7 kun ichida pul qaytariladi.",
+  "paywall.terms": "Bir martalik toʻlov. Obuna emas. 7 kun ichida soʻrasangiz, pulingiz qaytariladi.",
   "paywall.cta": "Hisobotni olish",
   "paywall.buy_with_price": "Hisobotni olish · {price}",
   "paywall.decline": "Hozir emas",
@@ -20,5 +20,7 @@
   "payment.success.body": "Rahmat! Batafsil hisobotingiz tayyor.",
   "payment.retry": "Qayta urinish",
   "payment.open_report": "Hisobotni ochish",
-  "payment.chip.paid": "Sotib olingan"
+  "payment.chip.paid": "Sotib olingan",
+  "paywall.price": "150 ⭐",
+  "payment.unavailable": "Toʻlov hozircha ishlamayapti. Keyinroq urinib koʻring."
 }

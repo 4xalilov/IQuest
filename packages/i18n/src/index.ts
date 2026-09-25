@@ -31,10 +31,10 @@ function readStored(): Locale | null {
   }
 }
 
-/** Telegram language_code → our locale. Russian-speaking CIS codes → 'ru', everything else → 'uz-Latn'. */
+/** Telegram language_code → our locale. CIS codes (ru, uk, be, kk, ky, tg) → 'ru' (DESIGN §9 S1), everything else → 'uz-Latn'. */
 export function fromLanguageCode(code: string | undefined | null): Locale {
   const base = (code ?? '').toLowerCase().split(/[-_]/)[0];
-  return base === 'ru' || base === 'be' || base === 'uk' || base === 'kk' ? 'ru' : 'uz-Latn';
+  return ['ru', 'uk', 'be', 'kk', 'ky', 'tg'].includes(base) ? 'ru' : 'uz-Latn';
 }
 
 function telegramLang(): string | undefined {

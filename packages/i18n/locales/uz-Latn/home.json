@@ -10,5 +10,6 @@
   "home.resume.cta": "Davom ettirish",
   "home.results.title": "Natijalarim",
   "home.results.meta": "Oxirgi natija: {date}",
-  "home.results.cta": "Koʻrish"
+  "home.results.cta": "Koʻrish",
+  "home.pending.meta": "Natijagacha bir qadam qoldi"
 }

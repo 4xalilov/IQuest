@@ -9,5 +9,6 @@
   "consent.minor.chip": "Kutilmoqda",
   "consent.minor.nosave": "Rozilik kelguncha natijangiz saqlanmaydi.",
   "consent.minor.cta": "Ota-onamga yuborish",
-  "consent.minor.message": "Farzandingiz IQuest ilovasida mantiqiy fikrlash testini topshirdi. Natijani saqlash uchun roziligingiz kerak: {link}"
+  "consent.minor.message": "Farzandingiz IQuest ilovasida mantiqiy fikrlash testini topshirdi. Natijani saqlash uchun roziligingiz kerak: {link}",
+  "consent.minor.sent": "Soʻrov yuborildi. Ota-onangiz rozilik bergach, natijangiz saqlanadi."
 }

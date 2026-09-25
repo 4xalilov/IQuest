@@ -5,10 +5,10 @@
   "result.style.label": "Kognitiv uslubingiz",
   "result.band.label": "Taxminiy IQ oraligʻi",
   "result.band.aria": "Taxminiy IQ oraligʻi: {low}–{high}",
-  "result.pct": "100 kishidan taxminan {low}–{high} tasidan yuqori",
+  "result.pct": "Har 100 kishidan taxminan {low}–{high} nafaridan yuqori",
   "result.norms.provisional": "Dastlabki meʼyorlar",
   "result.abilities": "Qobiliyatlaringiz",
-  "result.strongest": "Eng kuchli tomoningiz: {style}",
+  "result.strongest": "Eng kuchli tomoningiz: {domain}",
   "result.accordion.means": "Bu natija nimani anglatadi?",
   "result.accordion.next": "Keyingi qadamlar",
   "result.means": "Bu natija ijodkorligingiz, bilimingiz, xarakteringiz yoki inson sifatidagi qadringizni oʻlchamaydi. Bu tibbiy tashxis emas.",
@@ -24,5 +24,10 @@
   "result.worried.body": "Bu test fikrlashning faqat bir qismini oʻlchaydi, natija esa kundan kunga oʻzgarishi mumkin. Charchoq, hayajon yoki shovqin uni pasaytiradi. Xohlasangiz, dam olib, keyinroq qayta urinib koʻring.",
   "result.retest": "Rasmiy qayta test — 90 kundan keyin, yangi savollar bilan.",
   "result.retake": "Qayta topshirish",
-  "result.share": "Natijani ulashish"
+  "result.share": "Natijani ulashish",
+  "result.band.short": "IQ {low}–{high}",
+  "result.unreliable.blur": "Test davomida ilovadan bir necha marta chiqdingiz, shuning uchun bu natija ishonchli emas. Tinch sharoitda qayta urinib koʻrasizmi?",
+  "result.norms_help.title": "Meʼyorlarni aniqlashtirishga yordam bering",
+  "result.norms_help.cta": "Yuborish",
+  "result.norms_help.thanks": "Rahmat! Javobingiz meʼyorlarni aniqlashtirishga yordam beradi."
 }

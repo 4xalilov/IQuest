@@ -6,7 +6,7 @@
   "paywall.item.timing": "Время и точность по каждому разделу",
   "paywall.item.plan": "Личный план тренировок на 4 недели",
   "paywall.item.pdf": "Отчёт в PDF",
-  "paywall.terms": "Разовая оплата. Не подписка. Возврат в течение 7 дней.",
+  "paywall.terms": "Разовая оплата. Не подписка. Вернём деньги, если попросите в течение 7 дней.",
   "paywall.cta": "Получить отчёт",
   "paywall.buy_with_price": "Получить отчёт · {price}",
   "paywall.decline": "Не сейчас",
@@ -20,5 +20,7 @@
   "payment.success.body": "Спасибо! Ваш подробный отчёт готов.",
   "payment.retry": "Попробовать снова",
   "payment.open_report": "Открыть отчёт",
-  "payment.chip.paid": "Куплено"
+  "payment.chip.paid": "Куплено",
+  "paywall.price": "150 ⭐",
+  "payment.unavailable": "Оплата сейчас недоступна. Попробуйте позже."
 }

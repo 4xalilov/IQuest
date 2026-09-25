@@ -15,7 +15,7 @@ const BUTTON_KEYS = [
   /^result\.(retake|share)$/,
   /^paywall\.decline$/,
   /^payment\.(retry|open_report)$/,
-  /^share\.(mode|channel)\./,
+  /^share\.(mode\.(style|score)|channel\.)/,
   /^report\.pdf$/,
   /^help\.contact$/,
 ];
@@ -47,8 +47,8 @@ describe('locale dictionaries', () => {
     expect(Object.entries(uz).filter(([, v]) => /[a-zA-Z][‘’`][a-zA-Z]/.test(v))).toEqual([]);
   });
 
-  it('uz-Latn has no Cyrillic leaks (except the Russian language name)', () => {
-    expect(Object.entries(uz).filter(([k, v]) => k !== 'lang.ru' && /[Ѐ-ӿ]/.test(v))).toEqual([]);
+  it('uz-Latn has no Cyrillic leaks (except the language names)', () => {
+    expect(Object.entries(uz).filter(([k, v]) => !['lang.ru', 'lang.switch'].includes(k) && /[Ѐ-ӿ]/.test(v))).toEqual([]);
   });
 
   it('no straight double quotes, double spaces or leading/trailing spaces', () => {
@@ -82,9 +82,14 @@ describe('t()', () => {
     expect(t('home.cta')).toBe('Начать тест');
   });
 
+  it('matches DESIGN §13 v1.1 copy', () => {
+    expect(t('result.pct', { low: 61, high: 86 })).toBe('Har 100 kishidan taxminan 61–86 nafaridan yuqori');
+    expect(t('section.done', { n: 1 })).not.toContain('✅');
+  });
+
   it('interpolates params and leaves unknown placeholders', () => {
     expect(t('finish.body', { count: 27, minutes: 16 })).toBe('Barakalla! 27 ta savolga 16 daqiqada javob berdingiz.');
-    expect(t('result.pct', { low: 60 })).toBe('100 kishidan taxminan 60–{high} tasidan yuqori');
+    expect(t('result.pct', { low: 60 })).toBe('Har 100 kishidan taxminan 60–{high} nafaridan yuqori');
   });
 
   it('falls back to uz-Latn, then to the key itself', () => {
@@ -102,6 +107,8 @@ describe('t()', () => {
     expect(fromLanguageCode('uk')).toBe('ru');
     expect(fromLanguageCode('kk')).toBe('ru');
     expect(fromLanguageCode('be')).toBe('ru');
+    expect(fromLanguageCode('ky')).toBe('ru');
+    expect(fromLanguageCode('tg')).toBe('ru');
     expect(fromLanguageCode('uz')).toBe('uz-Latn');
     expect(fromLanguageCode('en')).toBe('uz-Latn');
     expect(fromLanguageCode(undefined)).toBe('uz-Latn');

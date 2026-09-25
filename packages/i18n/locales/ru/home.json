@@ -10,5 +10,6 @@
   "home.resume.cta": "Продолжить",
   "home.results.title": "Мои результаты",
   "home.results.meta": "Последний результат: {date}",
-  "home.results.cta": "Открыть"
+  "home.results.cta": "Открыть",
+  "home.pending.meta": "До результата остался один шаг"
 }

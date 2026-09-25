@@ -128,3 +128,17 @@ export const notificationPrefs = pgTable('notification_prefs', {
   exam: boolean('exam').notNull().default(true),
 });
 
+
+/**
+ * Telegram'dan tashqari ilova (Android) uchun bot orqali kirish.
+ * Ilova nonce oladi → t.me/<bot>?start=login_<nonce> → bot foydalanuvchini bog'laydi → ilova poll qilib token oladi.
+ * Faqat nonce'ning sha256 xeshi saqlanadi.
+ */
+export const appLogins = pgTable('app_logins', {
+  nonceHash: text('nonce_hash').primaryKey(),
+  userId: integer('user_id').references(() => users.id, { onDelete: 'cascade' }),
+  createdAt: ts('created_at').notNull().defaultNow(),
+  expiresAt: ts('expires_at').notNull(),
+  claimedAt: ts('claimed_at'),
+  consumedAt: ts('consumed_at'),
+}, (t) => [index('app_logins_expires_idx').on(t.expiresAt)]);

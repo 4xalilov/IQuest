@@ -7,6 +7,7 @@ import type { Db } from '../db/client';
 import { users } from '../db/schema';
 import { toUserDto } from '../lib/dto';
 import { InitDataError, verifyInitData, type TgUser } from '../lib/telegram';
+import { LOGIN_PREFIX, pollAppLogin, startAppLogin } from '../services/appLogin';
 import { applyReferralCode } from '../services/referrals';
 import { getSettings, toPublicSettings } from '../services/settings';
 
@@ -69,6 +70,23 @@ const routes: FastifyPluginAsync = async (app) => {
     const ref = data.startParam ?? body.ref;
     if (created && ref) await applyReferralCode(app.db, user.id, ref);
     return issue(user);
+  });
+
+  /** Android ilova: bot orqali kirishni boshlash. botLink'ni Telegram'da ochish kerak. */
+  app.post('/auth/app/start', { config: { rateLimit: { max: 10, timeWindow: '1 minute' } } }, async () => {
+    const { nonce, expiresAt } = await startAppLogin(app.db);
+    return { nonce, expiresAt: expiresAt.toISOString(), botLink: `https://t.me/${app.config.botUsername}?start=${LOGIN_PREFIX}${nonce}` };
+  });
+
+  /** Android ilova: har 2–3 soniyada so'raladi. status: pending | expired (410) | ok (+ token, user, settings). */
+  app.post('/auth/app/poll', { config: { rateLimit: { max: 60, timeWindow: '1 minute' } } }, async (req, reply) => {
+    const { nonce } = z.object({ nonce: z.string().max(64) }).parse(req.body);
+    const r = await pollAppLogin(app.db, nonce);
+    if (r.status === 'pending') return { status: 'pending' };
+    if (r.status === 'expired') return reply.code(410).send({ error: 'expired' });
+    const [user] = await app.db.select().from(users).where(eq(users.id, r.userId));
+    if (!user) return reply.code(410).send({ error: 'expired' });
+    return { status: 'ok', ...(await issue(user)) };
   });
 
   /** Faqat dev/test: Telegram'siz brauzerda sinash uchun. Production'da o'chiq. */

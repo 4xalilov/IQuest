@@ -4,6 +4,8 @@ import { eq } from 'drizzle-orm';
 import { payments, users } from '../db/schema';
 import { callBotApi } from '../lib/botApi';
 import { markPaid } from '../services/payments';
+import { LOGIN_PREFIX, claimAppLogin } from '../services/appLogin';
+import { upsertTgUser } from './auth';
 
 interface TgUpdate {
   update_id?: number;
@@ -16,7 +18,7 @@ interface TgUpdate {
   };
   message?: {
     chat: { id: number };
-    from?: { id: number };
+    from?: { id: number; first_name?: string; last_name?: string; username?: string; language_code?: string; is_bot?: boolean };
     text?: string;
     successful_payment?: {
       currency: string;
@@ -84,6 +86,18 @@ const routes: FastifyPluginAsync = async (app) => {
     });
   }
 
+  /** Android ilovadan kelgan "Telegram orqali kirish": nonce'ni shu Telegram foydalanuvchisiga bog'laydi. */
+  async function onAppLogin(chatId: number, from: NonNullable<NonNullable<TgUpdate['message']>['from']>, nonce: string) {
+    const { user } = await upsertTgUser(app.db, from);
+    const ok = await claimAppLogin(app.db, nonce, user.id);
+    await bot('sendMessage', {
+      chat_id: chatId,
+      text: ok
+        ? "✅ Kirish tasdiqlandi. IQuest ilovasiga qayting — hisobingiz ochiladi."
+        : "Bu kirish havolasi eskirgan yoki allaqachon ishlatilgan. Ilovada \"Telegram orqali kirish\" tugmasini qayta bosing.",
+    });
+  }
+
   app.post('/bot/webhook', { config: { rateLimit: false } }, async (req, reply) => {
     const secret = app.config.botWebhookSecret;
     const header = req.headers['x-telegram-bot-api-secret-token'];
@@ -96,7 +110,8 @@ const routes: FastifyPluginAsync = async (app) => {
       else if (u.message?.successful_payment) await onSuccessfulPayment(u.message.successful_payment);
       else if (u.message?.text) {
         const m = START_RE.exec(u.message.text.trim());
-        if (m) await onStart(u.message.chat.id, m[1]);
+        if (m && m[1]?.startsWith(LOGIN_PREFIX) && u.message.from && !u.message.from.is_bot) await onAppLogin(u.message.chat.id, u.message.from, m[1].slice(LOGIN_PREFIX.length));
+        else if (m) await onStart(u.message.chat.id, m[1]);
       }
     } catch (e) {
       req.log.error({ err: e, updateId: u.update_id }, 'bot webhook update failed');

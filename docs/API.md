@@ -28,6 +28,9 @@ Bu fayl yagona manba: endpoint o'zgarsa — shu faylni ham yangilang.
 
 ### auth (tayyor)
 - `POST /auth/telegram` `{ initData, ref? }` → `{ token, user, settings }`. `start_param` (yoki `ref`) — referal kodi, faqat yangi foydalanuvchiga qo'llanadi.
+- `POST /auth/app/start` → `{ nonce, botLink, expiresAt }` — Android ilova (Telegram'dan tashqari). `botLink` = `https://t.me/<bot>?start=login_<nonce>` (10 daqiqa).
+  Foydalanuvchi botda Start bosadi → bot nonce'ni uning hisobiga bog'laydi.
+- `POST /auth/app/poll` `{ nonce }` → `{ status:'pending' }` | `{ status:'ok', token, user, settings }` (bir marta) | 410 `expired`.
 - `POST /auth/dev` `{ tgId, firstName?, ref? }` → xuddi shu (faqat `NODE_ENV!=production`).
 - `settings` shakli (frontend `res.settings.daily_test_limit.value` o'qiydi): `{ daily_test_limit:{value}, free_exam_count:{value}, free_ticket_count:{value}, discount, plans, referral_milestones, card }`.
 

@@ -5,8 +5,9 @@
   "scripts": {
     "dev": "pnpm --filter @iquest/tma dev",
     "build": "pnpm --filter @iquest/tma build",
-    "typecheck": "tsc -p tsconfig.json --noEmit",
-    "test": "vitest run"
+    "typecheck": "tsc -p tsconfig.json --noEmit && pnpm --filter @iquest/api typecheck",
+    "test": "vitest run && pnpm --filter @iquest/api test",
+    "dev:api": "pnpm --filter @iquest/api dev"
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.10.6",

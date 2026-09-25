@@ -21,5 +21,6 @@
       "@iquest/engine": ["packages/engine/src/index.ts"]
     }
   },
-  "include": ["apps/*/src", "packages/*/src"]
+  "include": ["apps/*/src", "packages/*/src"],
+  "exclude": ["apps/api"]
 }

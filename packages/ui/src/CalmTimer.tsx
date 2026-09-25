@@ -44,17 +44,17 @@ export function CalmTimer({
         aria-pressed={hidden}
         onClick={onToggle}
       >
-        <svg class="iq-timer__ring" viewBox="0 0 20 20" aria-hidden="true">
-          <circle cx="10" cy="10" r={R} class="iq-timer__track" />
-          {!hidden && (
+        {!hidden && (
+          <svg class="iq-timer__ring" viewBox="0 0 20 20" aria-hidden="true">
+            <circle cx="10" cy="10" r={R} class="iq-timer__track" />
             <circle
               cx="10" cy="10" r={R} class="iq-timer__arc"
               stroke-dasharray={C.toFixed(2)}
               stroke-dashoffset={(C * (1 - frac)).toFixed(2)}
               transform="rotate(-90 10 10)"
             />
-          )}
-        </svg>
+          </svg>
+        )}
         <span class="iq-timer__text" aria-hidden="true">
           {hidden ? (warn ? warnText : showLabel) : clock}
         </span>

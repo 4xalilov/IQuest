@@ -15,16 +15,18 @@
 }
 .iq-tile:active:not(:disabled) { transform: scale(.97); }
 @media (hover: hover) {
-  .iq-tile:hover:not(:disabled):not(.is-selected) { box-shadow: var(--sh), inset 0 0 0 1px var(--field-line); }
+  .iq-tile:hover:not(:disabled):not(.is-selected) { box-shadow: var(--sh), inset 0 0 0 1px var(--control-edge); }
 }
 .iq-tile.is-selected { background: var(--selected-bg); box-shadow: inset 0 0 0 2px var(--accent); }
 .iq-tile:disabled { opacity: .45; cursor: default; }
 .iq-tile__body { display: grid; place-items: center; width: 100%; height: 100%; }
 .iq-tile__body > svg { width: 100%; height: 100%; }
 
-/* ✓ badge: optically centred check in a 20px accent disc, top-right corner. */
+/* ✓ badge: 20px accent disc straddling the top-right corner (never covers the glyph),
+   separated from neighbours by a --bg ring. */
 .iq-tile__check {
-  position: absolute; top: 5px; right: 5px;
+  position: absolute; top: -6px; right: -6px;
+  box-shadow: 0 0 0 2px var(--bg);
   width: 20px; height: 20px;
   display: grid; place-items: center;
   border-radius: 50%;

@@ -1,3 +1,4 @@
+import { toChildArray } from 'preact';
 import type { ComponentChildren, JSX } from 'preact';
 import { useRef } from 'preact/hooks';
 import { OptionTile } from './OptionTile';
@@ -21,7 +22,8 @@ export interface OptionGridProps {
 
 export function OptionGrid({ columns, value, onChange, children, label = 'Javob variantlari', shape = 'square', disabled, optionLabel }: OptionGridProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const n = children.length;
+  const items = toChildArray(children);
+  const n = items.length;
   const focusIndex = value ?? 0;
 
   const move = (i: number) => {
@@ -56,7 +58,7 @@ export function OptionGrid({ columns, value, onChange, children, label = 'Javob 
       class={cx('iq-options', shape === 'wide' && 'iq-options--wide')}
       style={{ '--iq-cols': String(columns) }}
     >
-      {children.map((child, i) => (
+      {items.map((child, i) => (
         <OptionTile
           key={i}
           index={i}

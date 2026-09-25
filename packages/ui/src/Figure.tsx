@@ -10,16 +10,16 @@ export type Slot = Place;
 /**
  * Rendering convention for spatial figures (engine types.ts): glyph i sits in
  * slot i of a 2×2 grid, clockwise from top-left (0 TL, 1 TR, 2 BR, 3 BL), each at
- * half scale. The engine pre-rotates options (slot shift + glyph.rotate), so the
+ * ~half scale. The engine pre-rotates options (slot shift + glyph.rotate), so the
  * UI draws figures as given. A single glyph is centred at full scale.
  */
 export function figureLayout(n: number): Slot[] {
   if (n <= 1) return [{ x: 50, y: 50, scale: 1 }];
   const slots: Slot[] = [
-    { x: 25, y: 25, scale: 0.5 },
-    { x: 75, y: 25, scale: 0.5 },
-    { x: 75, y: 75, scale: 0.5 },
-    { x: 25, y: 75, scale: 0.5 },
+    { x: 26, y: 26, scale: 0.54 },
+    { x: 74, y: 26, scale: 0.54 },
+    { x: 74, y: 74, scale: 0.54 },
+    { x: 26, y: 74, scale: 0.54 },
   ];
   return slots.slice(0, Math.min(n, 4));
 }

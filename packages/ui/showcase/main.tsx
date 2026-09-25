@@ -96,7 +96,7 @@ function App() {
 
   return (
     <Screen
-      bottom={<Button block onClick={() => setSheet(true)}>Keyingi</Button>}
+      bottom={q.get('nobar') ? undefined : <Button block onClick={() => setSheet(true)}>Keyingi</Button>}
     >
       <PageHeader eyebrow="@iquest/ui" title="Komponentlar" chip={<StatusChip tone="accent">v1</StatusChip>} sub="Barcha komponentlar va holatlari." />
       <Toolbar />

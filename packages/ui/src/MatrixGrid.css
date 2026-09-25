@@ -1,9 +1,10 @@
-/* 3×3, cells fluid up to 88px, 6px gaps; fits 360px screens with 16px gutters. */
+/* 3×3, cells fluid up to --matrix-cell (88px; smaller on short viewports), --matrix-gap;
+   fits 360px screens with 16px gutters. */
 .iq-matrix {
   align-self: center;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 88px));
-  gap: 6px;
+  grid-template-columns: repeat(3, minmax(0, var(--matrix-cell, 88px)));
+  gap: var(--matrix-gap, 6px);
   justify-content: center;
   width: fit-content; max-width: 100%;
   margin-inline: auto;

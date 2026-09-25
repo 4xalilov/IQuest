@@ -21,10 +21,11 @@
 .iq-btn--secondary { background: var(--soft); color: var(--ink); }
 .iq-btn--ghost { background: transparent; color: var(--accent); min-height: var(--btn-h-s); }
 @media (hover: hover) {
-  .iq-btn--primary:hover:not(:disabled) { opacity: .9; }
+  .iq-btn--primary:hover:not(:disabled) { background: var(--accent-fill-press); }
   .iq-btn--secondary:hover:not(:disabled) { background: var(--soft-2); }
   .iq-btn--ghost:hover:not(:disabled) { background: var(--accent-tint); }
 }
+.iq-btn--primary:active:not(:disabled) { background: var(--accent-fill-press); }
 .iq-btn--secondary:active:not(:disabled) { background: var(--soft-2); }
 
 .iq-btn__label { transition: opacity var(--dur-fast) var(--ease); }

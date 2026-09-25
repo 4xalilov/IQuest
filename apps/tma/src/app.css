@@ -25,8 +25,7 @@
 .app-title-icon { display: inline-flex; align-items: center; gap: var(--s-2); }
 
 .app-section { display: flex; flex-direction: column; gap: var(--s-3); }
-.app-card-stack > * + * { margin-top: var(--s-2); }
-.iq-card > .iq-chip + .app-p, .iq-card > [class*="iq-chip"] + .app-p { margin-top: var(--s-2); }
+.iq-card > .app-p + .app-p, .iq-card > * + .app-p { margin-top: var(--s-2); }
 .app-center-row { display: flex; justify-content: center; }
 .app-row { display: flex; align-items: center; justify-content: space-between; gap: var(--s-3); flex-wrap: wrap; }
 .app-actions { display: flex; flex-direction: column; gap: var(--s-2); }
@@ -109,9 +108,10 @@
 /* S4/S5 item area */
 .app-item { display: flex; flex-direction: column; gap: var(--s-3); }
 .app-stimulus { display: flex; justify-content: center; }
-.app-stimulus--figure .iq-figure { width: 112px; height: 112px; }
+.app-stimulus--figure { align-self: center; padding: var(--s-4); border-radius: var(--r-card); background: var(--surface); box-shadow: var(--sh-2); }
+.app-stimulus--figure .iq-figure { width: 120px; height: 120px; }
+.app-feedback-slot { scroll-margin-bottom: 96px; }
 .app-prompt { margin: 0; font-size: var(--body-size); font-weight: 600; line-height: var(--body-lh); color: var(--ink-2); outline: none; }
-.app-task { margin: 0; color: var(--ink-2); }
 .app-fade { animation: app-fade 120ms var(--ease) backwards; }
 @keyframes app-fade { from { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .app-fade { animation: none; } }
@@ -144,7 +144,8 @@
 
 /* Sheets */
 .app-sheet { display: flex; flex-direction: column; gap: var(--s-4); }
-.app-share-preview { display: flex; flex-direction: column; gap: var(--s-2); }
+.app-share-preview { display: flex; flex-direction: column; gap: var(--s-2); padding: var(--s-3); border-radius: var(--r-card); background: var(--soft); }
+.app-share-preview .iq-style { box-shadow: none; }
 .app-share-iq { margin: 0; font-size: var(--title-2-size); font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; }
 
 /* Forms */
@@ -191,3 +192,13 @@
 
 /* Destructive action: danger colour + word (never colour alone) */
 .iq-btn.app-danger { color: var(--danger); background: var(--danger-tint); }
+
+/* Programmatic focus on the screen heading (a11y) — no visible ring for it. */
+h1[tabindex="-1"]:focus { outline: none; }
+
+/* Past ekranlar (≤ 720px, DESIGN v1.1 §4): savol ekrani bir ekranga sigʻsin — oraliqlar ixchamroq. */
+@media (max-height: 720px) {
+  .app-q .iq-screen__body { gap: var(--s-2); padding-bottom: var(--s-3); }
+  .app-q .app-item { gap: var(--s-2); }
+  .app-q .iq-matrix { padding: var(--s-2); }
+}

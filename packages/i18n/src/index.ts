@@ -8,14 +8,28 @@ type Dict = Record<string, string>;
 const STORAGE_KEY = 'iquest.locale';
 const FALLBACK: Locale = 'uz-Latn';
 
-const modules = import.meta.glob<Dict>('../locales/*/*.json', { eager: true, import: 'default' });
+// uz-Latn — asosiy va zaxira til, doim bundle ichida. Qolgan tillar talab qilinganda yuklanadi.
+const uzModules = import.meta.glob<Dict>('../locales/uz-Latn/*.json', { eager: true, import: 'default' });
+const loaders: Record<Exclude<Locale, 'uz-Latn'>, () => Promise<{ default: Dict }>> = {
+  ru: () => import('./ru'),
+};
 
-/** Merged flat dictionaries per locale. Exported for tests/tools. */
+/** Merged flat dictionaries per locale (ru is empty until loadLocale('ru')). Exported for tests/tools. */
 export const dictionaries: Record<Locale, Dict> = { 'uz-Latn': {}, ru: {} };
-for (const [path, dict] of Object.entries(modules)) {
-  const m = /\/locales\/([^/]+)\/[^/]+\.json$/.exec(path);
-  const loc = m?.[1] as Locale | undefined;
-  if (loc && loc in dictionaries) Object.assign(dictionaries[loc], dict);
+for (const dict of Object.values(uzModules)) Object.assign(dictionaries['uz-Latn'], dict);
+
+const loading: Partial<Record<Locale, Promise<void>>> = {};
+
+/** Loads a locale's dictionary once. uz-Latn resolves immediately. */
+export function loadLocale(l: Locale): Promise<void> {
+  if (l === 'uz-Latn') return Promise.resolve();
+  return (loading[l] ??= loaders[l]().then(
+    (m) => void Object.assign(dictionaries[l], m.default),
+    (err) => {
+      delete loading[l]; // tarmoq xatosi — keyingi urinishda qayta yuklanadi
+      throw err;
+    },
+  ));
 }
 
 function isLocale(v: unknown): v is Locale {
@@ -59,7 +73,16 @@ export function hasStoredLocale(): boolean {
   return readStored() !== null;
 }
 
-export const locale: Signal<Locale> = signal(initialLocale());
+const startLocale = initialLocale();
+
+/** Current locale. Switches only after its dictionary is loaded, so the UI never flashes raw keys. */
+export const locale: Signal<Locale> = signal<Locale>('uz-Latn');
+
+/** Resolves when the starting locale is ready; render the app after it (no-op for uz-Latn). */
+export const ready: Promise<void> = loadLocale(startLocale).then(
+  () => void (locale.value = startLocale),
+  () => undefined, // yuklanmasa — uz-Latn bilan davom etamiz
+);
 
 if (typeof document !== 'undefined') {
   effect(() => {
@@ -67,8 +90,9 @@ if (typeof document !== 'undefined') {
   });
 }
 
-export function setLocale(l: Locale): void {
+export async function setLocale(l: Locale): Promise<void> {
   if (!isLocale(l)) return;
+  await loadLocale(l);
   locale.value = l;
   try {
     localStorage.setItem(STORAGE_KEY, l);

@@ -22,6 +22,12 @@
 .iq-tile__body { display: grid; place-items: center; width: 100%; height: 100%; }
 .iq-tile__body > svg { width: 100%; height: 100%; }
 
+/* Past ekranlarda (DESIGN v1.1 §4, --matrix-cell bilan bir xil chegara) plitkalar pastroq:
+   glif kvadrat qoladi (svg meet), savol ekrani ~40px ixchamlashadi. */
+@media (max-height: 720px) {
+  .iq-tile { aspect-ratio: 5 / 4; padding: 7%; }
+}
+
 /* ✓ badge: 20px accent disc straddling the top-right corner (never covers the glyph),
    separated from neighbours by a --bg ring. */
 .iq-tile__check {

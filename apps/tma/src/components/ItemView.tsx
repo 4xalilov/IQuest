@@ -47,7 +47,6 @@ export function ItemView({ item, value, onChange, disabled }: Props) {
   }
   return (
     <>
-      <p class="app-task">{t('item.rotation.task')}</p>
       <div class="app-stimulus app-stimulus--figure">
         <Figure glyphs={item.target} label={t('item.rotation.aria')} />
       </div>

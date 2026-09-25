@@ -43,7 +43,7 @@ export default function Resume() {
 
   const body =
     s.phase === 'break'
-      ? t('resume.body.break', { section: s.section + 1 })
+      ? t('resume.body.break', { section: s.section })
       : t('resume.body', { section: s.section + 1, item: s.item + 1 });
 
   return (

@@ -1,4 +1,4 @@
-import { useState } from 'preact/hooks';
+import { useEffect, useRef, useState } from 'preact/hooks';
 import { t } from '@iquest/i18n';
 import { tg } from '@iquest/tg';
 import { PageHeader } from '@iquest/ui';
@@ -11,14 +11,29 @@ import { replace } from '../router';
 import { form, practiceDone } from '../state';
 import { startSection } from '../flow';
 
-/** What changes along a matrix row → which explanation to show. */
+type Attr = 'count' | 'shape' | 'fill' | 'rotate';
+const ATTRS: Attr[] = ['count', 'shape', 'fill', 'rotate'];
+
+/** What changes in the matrix, and in which direction → which explanation to show. */
 function explain(item: Item): string {
-  if (item.kind === 'series') return t('practice.explain.series', { step: item.terms[1] - item.terms[0] });
+  if (item.kind === 'series') {
+    const step = item.terms[1] - item.terms[0];
+    return step < 0 ? t('practice.explain.series.less', { step: -step }) : t('practice.explain.series', { step });
+  }
   if (item.kind === 'matrix') {
-    const row = item.cells.slice(0, 3).filter((g) => g !== null);
-    const varies = (k: 'count' | 'shape' | 'fill' | 'rotate') => new Set(row.map((g) => String(g?.[k] ?? 0))).size > 1;
-    const attr = (['count', 'shape', 'fill', 'rotate'] as const).find(varies) ?? 'shape';
-    return t(`practice.explain.${attr}`);
+    const at = (r: number, c: number) => item.cells[r * 3 + c];
+    const val = (r: number, c: number, k: Attr) => String(at(r, c)?.[k] ?? 0);
+    // Along rows (left → right) or down columns (top → bottom)? Row 0 and column 0 are always complete.
+    const inRow = (k: Attr) => new Set([0, 1, 2].map((c) => val(0, c, k))).size > 1;
+    const inCol = (k: Attr) => new Set([0, 1, 2].map((r) => val(r, 0, k))).size > 1;
+    const rowAttr = ATTRS.find(inRow);
+    const attr = rowAttr ?? ATTRS.find(inCol) ?? 'shape';
+    const prefix = rowAttr ? 'practice.explain.' : 'practice.explain.col.';
+    if (attr === 'count') {
+      const [a, b] = rowAttr ? [at(0, 0), at(0, 1)] : [at(0, 0), at(1, 0)];
+      if ((b?.count ?? 0) < (a?.count ?? 0)) return t(`${prefix}count.less`);
+    }
+    return t(prefix + attr);
   }
   return t('practice.explain.rotation');
 }
@@ -31,6 +46,11 @@ export default function Practice({ index }: { index: number }) {
   const f = form.value;
   const item = f?.practice[index];
   const [value, setValue] = useState<number | null>(null);
+  const feedback = useRef<HTMLDivElement>(null);
+  // Keep the explanation in view above the BottomButton once answered.
+  useEffect(() => {
+    if (value !== null) feedback.current?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  }, [value]);
   if (!f || !item) return null;
 
   const answered = value !== null;
@@ -60,7 +80,7 @@ export default function Practice({ index }: { index: number }) {
       <div class="app-item" key={item.id}>
         <ItemView item={item} value={value} onChange={pick} />
       </div>
-      <div class="app-feedback-slot" aria-live="polite">
+      <div class="app-feedback-slot" aria-live="polite" ref={feedback}>
         {answered && (
           <div class={'app-feedback ' + (correct ? 'is-correct' : 'is-wrong')}>
             <span class="app-feedback__status">

@@ -187,7 +187,7 @@ export default function ResultPage({ id }: { id?: string }) {
       {low && !unreliable && !agePending ? (
         <>
           {/* Low band: strengths and conditions first, the number after (§9 S10 variants). */}
-          <p class="app-lead">{t('result.low.intro', { strength: t(`domain.${top.domain}`) })}</p>
+          <p class="app-lead">{r.style === 'balanced' ? t('result.low.intro.balanced') : t('result.low.intro', { strength: t(`domain.${top.domain}`) })}</p>
           <StyleBadge emoji={t(`style.${r.style}.emoji`)} name={styleName} desc={t(`style.${r.style}.desc`)} />
           {strengths}
           <Card padding="m">
@@ -209,7 +209,7 @@ export default function ResultPage({ id }: { id?: string }) {
         </>
       )}
 
-      {!minor && <NormsHelp />}
+      {!minor && !unreliable && <NormsHelp />}
 
       <div class="app-accordions">
         <Accordion title={t('result.accordion.means')}>
@@ -246,7 +246,7 @@ export default function ResultPage({ id }: { id?: string }) {
 
       {showPaywall && (
         <PaywallCard
-          title={t('paywall.title', { price: price() })}
+          title={t('report.title')}
           price={price()}
           items={PAYWALL_ITEMS.map((k) => t(k))}
           terms={t('paywall.terms')}

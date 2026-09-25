@@ -5,7 +5,7 @@ import { Button, PageHeader, Sheet } from '@iquest/ui';
 import { Page } from '../components/Page';
 import { ChipGroup } from '../components/ChipGroup';
 import { ChevronIcon } from '../components/Icons';
-import { navigate, reset } from '../router';
+import { boot, navigate } from '../router';
 import { deleteAllData, largeText } from '../state';
 import { LINKS, openLink } from '../flow';
 
@@ -33,7 +33,7 @@ export default function Settings() {
     tg.haptic.success();
     setBusy(false);
     setConfirm(false);
-    reset({ name: 'intro' });
+    boot({ name: 'intro' }); // like a first launch
   };
 
   return (

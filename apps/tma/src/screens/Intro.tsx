@@ -57,7 +57,7 @@ export default function Intro() {
       {isAgePending(age) && (
         <Card tone="notice" padding="m">
           <StatusChip tone="notice">{t('result.age_pending.chip')}</StatusChip>
-          <p class="app-p">{t('result.age_pending')}</p>
+          <p class="app-p">{t('test.intro.age_pending')}</p>
         </Card>
       )}
       {isMinor(age) && !isAgePending(age) && <p class="app-hint">{t('consent.minor')}</p>}

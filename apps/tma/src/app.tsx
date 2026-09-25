@@ -41,7 +41,7 @@ function renderRoute(r: Route) {
 function backHandler(r: Route): (() => void) | null {
   if (TEST_FLOW.includes(r.name)) return () => (exitAsk.value = true);
   if (r.name === 'finish' || r.name === 'result') return () => reset({ name: 'home' });
-  if (isRoot.value) return r.name === 'home' ? null : () => reset({ name: 'home' });
+  if (isRoot.value) return null; // first screen (S2, or S3 on first launch): Telegram closes the app
   return back;
 }
 

@@ -20,6 +20,7 @@
   "result.age_pending.chip": "Meʼyorlar tayyorlanmoqda",
   "result.age_pending": "Yoshingiz uchun meʼyorlar tayyorlanmoqda. Tayyor boʻlganda xabar beramiz.",
   "result.low.intro": "Har kimning kuchli tomoni bor. Sizniki — {strength}.",
+  "result.low.intro.balanced": "Har kimning kuchli tomoni bor. Sizda barcha yoʻnalishlar bir tekis rivojlangan.",
   "result.worried": "Natija haqida qaygʻuryapsizmi?",
   "result.worried.body": "Bu test fikrlashning faqat bir qismini oʻlchaydi, natija esa kundan kunga oʻzgarishi mumkin. Charchoq, hayajon yoki shovqin uni pasaytiradi. Xohlasangiz, dam olib, keyinroq qayta urinib koʻring.",
   "result.retest": "Rasmiy qayta test — 90 kundan keyin, yangi savollar bilan.",

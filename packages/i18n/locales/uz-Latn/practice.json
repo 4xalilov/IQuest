@@ -12,10 +12,17 @@
   "practice.ready": "Mashq tugadi. Endi asosiy test boshlanadi — unda toʻgʻri javoblar koʻrsatilmaydi.",
   "practice.label": "Mashq",
   "practice.answer_is": "Toʻgʻri javob — {n}-variant",
-  "practice.explain.count": "Har bir qatorda shakllar bittadan koʻpaymoqda.",
-  "practice.explain.shape": "Har bir qatorda shakl turi almashib boradi.",
-  "practice.explain.fill": "Har bir qatorda shakllarning boʻyalishi oʻzgarib boradi.",
-  "practice.explain.rotate": "Har bir qatorda shakl bir xil burchakka burilib boradi.",
+  "practice.explain.count": "Har bir qatorda chapdan oʻngga shakllar soni ortib boradi.",
+  "practice.explain.count.less": "Har bir qatorda chapdan oʻngga shakllar soni kamayib boradi.",
+  "practice.explain.shape": "Har bir qatorda chapdan oʻngga shakl turi almashib boradi.",
+  "practice.explain.fill": "Har bir qatorda chapdan oʻngga shakllarning boʻyalishi oʻzgarib boradi.",
+  "practice.explain.rotate": "Har bir qatorda chapdan oʻngga shakl bir xil burchakka burilib boradi.",
   "practice.explain.series": "Har bir keyingi son oldingisidan {step} ga katta.",
-  "practice.explain.rotation": "Toʻgʻri variant — namunaning oʻzi, faqat burilgan, koʻzgudagi aksi emas."
+  "practice.explain.rotation": "Toʻgʻri variant — namunaning oʻzi, faqat burilgan, koʻzgudagi aksi emas.",
+  "practice.explain.col.count": "Har bir ustunda yuqoridan pastga shakllar soni ortib boradi.",
+  "practice.explain.col.count.less": "Har bir ustunda yuqoridan pastga shakllar soni kamayib boradi.",
+  "practice.explain.col.shape": "Har bir ustunda yuqoridan pastga shakl turi almashib boradi.",
+  "practice.explain.col.fill": "Har bir ustunda yuqoridan pastga shakllarning boʻyalishi oʻzgarib boradi.",
+  "practice.explain.col.rotate": "Har bir ustunda yuqoridan pastga shakl bir xil burchakka burilib boradi.",
+  "practice.explain.series.less": "Har bir keyingi son oldingisidan {step} ga kichik."
 }

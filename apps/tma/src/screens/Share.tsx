@@ -1,7 +1,7 @@
 import { useState } from 'preact/hooks';
 import { t } from '@iquest/i18n';
 import { tg } from '@iquest/tg';
-import { Button, Card, Sheet, StyleBadge } from '@iquest/ui';
+import { Button, Sheet, StyleBadge } from '@iquest/ui';
 import { ChipGroup } from '../components/ChipGroup';
 import { findResult, isAgePending } from '../state';
 
@@ -35,13 +35,11 @@ export default function ShareSheet({ open, onClose, id }: { open: boolean; onClo
     <Sheet open={open} onClose={onClose} label={t('share.title')}>
       <div class="app-sheet">
         <h2 class="app-h2">{t('share.title')}</h2>
-        <Card padding="m">
-          <div class="app-share-preview" role="img" aria-label={t('share.preview.aria')}>
-            <span class="app-eyebrow">{t('share.card.title')}</span>
-            <StyleBadge emoji={t(`style.${r.style}.emoji`)} name={styleName} desc={t(`style.${r.style}.desc`)} />
-            {withScore && <p class="app-share-iq">{t('share.card.iq', { low: r.band.low, high: r.band.high })}</p>}
-          </div>
-        </Card>
+        <div class="app-share-preview" role="img" aria-label={t('share.preview.aria')}>
+          <span class="app-eyebrow">{t('share.card.title')}</span>
+          <StyleBadge emoji={t(`style.${r.style}.emoji`)} name={styleName} desc={t(`style.${r.style}.desc`)} />
+          {withScore && <p class="app-share-iq">{t('share.card.iq', { low: r.band.low, high: r.band.high })}</p>}
+        </div>
         {scoreAllowed && (
           <>
             <ChipGroup<Mode>

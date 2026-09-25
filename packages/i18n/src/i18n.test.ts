@@ -1,5 +1,7 @@
 import { describe, expect, it, beforeEach } from 'vitest';
-import { dictionaries, fromLanguageCode, hasKey, locale, setLocale, t } from './index';
+import { dictionaries, fromLanguageCode, hasKey, loadLocale, locale, setLocale, t } from './index';
+
+await loadLocale('ru');
 
 const uz = dictionaries['uz-Latn'];
 const ru = dictionaries.ru;
@@ -75,9 +77,13 @@ describe('locale dictionaries', () => {
 describe('t()', () => {
   beforeEach(() => setLocale('uz-Latn'));
 
-  it('returns the value for the current locale', () => {
+  it('loads ru lazily and only switches after loading', async () => {
+    expect(Object.keys(ru).length).toBeGreaterThan(300);
+  });
+
+  it('returns the value for the current locale', async () => {
     expect(t('home.cta')).toBe('Testni boshlash');
-    setLocale('ru');
+    await setLocale('ru');
     expect(locale.value).toBe('ru');
     expect(t('home.cta')).toBe('Начать тест');
   });
@@ -92,8 +98,8 @@ describe('t()', () => {
     expect(t('result.pct', { low: 60 })).toBe('Har 100 kishidan taxminan 60–{high} nafaridan yuqori');
   });
 
-  it('falls back to uz-Latn, then to the key itself', () => {
-    setLocale('ru');
+  it('falls back to uz-Latn, then to the key itself', async () => {
+    await setLocale('ru');
     uz['__only_uz__'] = 'faqat {x}';
     expect(t('__only_uz__', { x: 1 })).toBe('faqat 1');
     delete uz['__only_uz__'];

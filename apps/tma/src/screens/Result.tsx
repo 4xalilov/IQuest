@@ -13,9 +13,8 @@ import {
 import { dayMonth } from '../format';
 import { idlePreload } from '../lazy';
 import { PaywallScreen, ShareSheet } from './lazy';
-import { price } from '../price';
+import { price, PAYWALL_ITEMS } from '../price';
 
-export const PAYWALL_ITEMS = ['paywall.item.sections', 'paywall.item.timing', 'paywall.item.plan', 'paywall.item.pdf'];
 
 const celebrated = new Set<string>();
 

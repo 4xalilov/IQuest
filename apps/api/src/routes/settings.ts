@@ -1,5 +1,8 @@
 import type { FastifyPluginAsync } from 'fastify';
+import { getSettings, toPublicSettings } from '../services/settings';
 
-// TODO: docs/API.md dagi "settings" bo'limi bo'yicha amalga oshiriladi.
-const routes: FastifyPluginAsync = async () => {};
+const routes: FastifyPluginAsync = async (app) => {
+  /** Ommaviy sozlamalar (auth shart emas) — /auth/telegram dagi `settings` bilan bir xil shakl. */
+  app.get('/settings/public', async () => toPublicSettings(await getSettings(app.db)));
+};
 export default routes;

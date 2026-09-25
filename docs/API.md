@@ -75,12 +75,12 @@ Bu fayl yagona manba: endpoint o'zgarsa — shu faylni ham yangilang.
   day/week/month — Toshkent yarim tunidan 0/6/29 kun oldin boshlanadi; standart `week`. Rank noyob: teng xp'da kichik userId oldinda. 0 xp'lilar chiqarilmaydi.
 
 ### payments — `routes/payments.ts` + `routes/bot.ts`
-- `GET /payments/plans` → `{ plans: [{ id, days, uzs, uzsFinal, stars }], discount, card }` (chegirma `uzsFinal` ga qo'llanadi; faol bo'lsa va `endDate` o'tmagan bo'lsa)
+- `GET /payments/plans` → `{ plans: [{ id, days, uzs, uzsFinal, stars }], discount: {...discount, applied}, card }` (chegirma `uzsFinal` ga qo'llanadi; faol bo'lsa va `endDate` o'tmagan bo'lsa)
 - `POST /payments/stars/invoice` `{ plan }` → `{ paymentId, invoiceLink }` — Bot API `createInvoiceLink` (currency `XTR`, `payload` = noyob id, provider_token bo'sh). `payments` ga `pending`.
 - `POST /payments/receipt` (multipart: `plan` maydoni + `file` — jpg/png/webp/pdf ≤ 5 MB) → `{ payment }` — `UPLOAD_DIR` ga saqlanadi, `card_receipt`, `pending`, summa = `uzsFinal`. Foydalanuvchida allaqachon `pending` chek bo'lsa — 409.
 - `GET /payments/me` → `{ items: [...] }`
 - `POST /bot/webhook` — Telegram update'lari. `X-Telegram-Bot-Api-Secret-Token` = `BOT_WEBHOOK_SECRET` bo'lmasa 401.
-  `pre_checkout_query` → payload bo'yicha `pending` to'lovni tekshiradi, `answerPreCheckoutQuery(ok)`.
+  `pre_checkout_query` → payload bo'yicha `pending` to'lovni tekshiradi (summa, XTR, to'lovchi `from.id` = to'lov egasi — boshqaga yuborilgan invoice rad etiladi), `answerPreCheckoutQuery(ok)`.
   `message.successful_payment` → idempotent: `telegram_payment_charge_id` bo'yicha; `paid`, `grantPro(plan.days)`, `notify(type:'payment')`.
   `/start <code>` xabari → Mini App tugmasi bilan javob (`sendMessage` + `web_app` inline tugma, `WEBAPP_URL` env).
 - Bot API chaqiruvlari `src/lib/botApi.ts` orqali (`callBotApi(token, method, params)`; testlarda `fetch` mock qilinadi).
